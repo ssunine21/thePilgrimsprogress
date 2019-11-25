@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpriteAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 12
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: e1e000280903d417aa7386ff1099ee34, type: 3}
+    totalSpriteSurfaceArea: 582321
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 2812237166971127058, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: -275424925667535449, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: 7463502638467202225, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: -1103117241074035775, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: -6994864569687820074, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: 7539092668706250452, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: 1439566808099381221, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: -7793030702063130536, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: -5601041687460310013, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: 5628586590360274389, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: 35664921491973164, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: 7411423795121215565, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: 156688672518191827, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - character_christian_sd_LArm
+  - character_christian_sd_closeMouse
+  - character_christian_sd_openMouse
+  - character_christian_sd_eyebrow
+  - character_christian_sd_glass
+  - character_christian_sd_hair
+  - character_christian_sd_face_openEyes
+  - character_christian_sd_head
+  - character_christian_sd_LLeg
+  - character_christian_sd_face_closeEyes
+  - character_christian_sd_RArm
+  - character_christian_sd_body
+  - character_christian_sd_RLeg
+  m_Tag: SpriteAtlas
+  m_IsVariant: 0

@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: e1e000280903d417aa7386ff1099ee34, type: 3}
-    totalSpriteSurfaceArea: 582321
+    totalSpriteSurfaceArea: 1504689
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -60,6 +60,13 @@ SpriteAtlas:
   - {fileID: 35664921491973164, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
   - {fileID: 7411423795121215565, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
   - {fileID: 156688672518191827, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
+  - {fileID: 5675542211147167696, guid: ced6efb97dde444838465bfff41b8752, type: 3}
+  - {fileID: 2958897419100099935, guid: ced6efb97dde444838465bfff41b8752, type: 3}
+  - {fileID: -3436802959674159344, guid: ced6efb97dde444838465bfff41b8752, type: 3}
+  - {fileID: 634172088693982207, guid: ced6efb97dde444838465bfff41b8752, type: 3}
+  - {fileID: 6209443459278220247, guid: ced6efb97dde444838465bfff41b8752, type: 3}
+  - {fileID: -385546535033180929, guid: ced6efb97dde444838465bfff41b8752, type: 3}
+  - {fileID: -1368854742158549478, guid: ced6efb97dde444838465bfff41b8752, type: 3}
   m_PackedSpriteNamesToIndex:
   - character_christian_sd_LArm
   - character_christian_sd_closeMouse
@@ -74,5 +81,12 @@ SpriteAtlas:
   - character_christian_sd_RArm
   - character_christian_sd_body
   - character_christian_sd_RLeg
+  - a_city_of_destruction_company_tile_3
+  - a_city_of_destruction_company_tile_2
+  - a_city_of_destruction_company_tile_1
+  - a_city_of_destruction_company_tile_0
+  - a_city_of_destruction_company_tile_6
+  - a_city_of_destruction_company_tile_5
+  - a_city_of_destruction_company_tile_4
   m_Tag: SpriteAtlas
   m_IsVariant: 0

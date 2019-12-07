@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: e1e000280903d417aa7386ff1099ee34, type: 3}
-    totalSpriteSurfaceArea: 1504689
+    totalSpriteSurfaceArea: 4059825
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -60,13 +60,14 @@ SpriteAtlas:
   - {fileID: 35664921491973164, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
   - {fileID: 7411423795121215565, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
   - {fileID: 156688672518191827, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
-  - {fileID: 5675542211147167696, guid: ced6efb97dde444838465bfff41b8752, type: 3}
-  - {fileID: 2958897419100099935, guid: ced6efb97dde444838465bfff41b8752, type: 3}
-  - {fileID: -3436802959674159344, guid: ced6efb97dde444838465bfff41b8752, type: 3}
-  - {fileID: 634172088693982207, guid: ced6efb97dde444838465bfff41b8752, type: 3}
-  - {fileID: 6209443459278220247, guid: ced6efb97dde444838465bfff41b8752, type: 3}
-  - {fileID: -385546535033180929, guid: ced6efb97dde444838465bfff41b8752, type: 3}
-  - {fileID: -1368854742158549478, guid: ced6efb97dde444838465bfff41b8752, type: 3}
+  - {fileID: 3457248505669624042, guid: 8833f83402f7bd642ada812d2ea3e897, type: 3}
+  - {fileID: -2230987095662131147, guid: 8833f83402f7bd642ada812d2ea3e897, type: 3}
+  - {fileID: -8949820232300140032, guid: 8833f83402f7bd642ada812d2ea3e897, type: 3}
+  - {fileID: 8118269448032311931, guid: 8833f83402f7bd642ada812d2ea3e897, type: 3}
+  - {fileID: 7833405888064811088, guid: 8833f83402f7bd642ada812d2ea3e897, type: 3}
+  - {fileID: -4937944694778453752, guid: 8833f83402f7bd642ada812d2ea3e897, type: 3}
+  - {fileID: 1335426951084499840, guid: 8833f83402f7bd642ada812d2ea3e897, type: 3}
+  - {fileID: 21300000, guid: e71f4a36d6a27da4bb8e4d158b4c6339, type: 3}
   m_PackedSpriteNamesToIndex:
   - character_christian_sd_LArm
   - character_christian_sd_closeMouse
@@ -88,5 +89,6 @@ SpriteAtlas:
   - a_city_of_destruction_company_tile_6
   - a_city_of_destruction_company_tile_5
   - a_city_of_destruction_company_tile_4
+  - a_city_of_destruction_company_building_a
   m_Tag: SpriteAtlas
   m_IsVariant: 0

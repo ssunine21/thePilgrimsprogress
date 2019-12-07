@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: a_city_of_destruction_company_tile_2
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 2958897419100099935, guid: ced6efb97dde444838465bfff41b8752,
+  m_Sprite: {fileID: -2230987095662131147, guid: 8833f83402f7bd642ada812d2ea3e897,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:

@@ -1,0 +1,337 @@
+fileFormatVersion: 2
+guid: 850a4d45f58ac44ddb313a4bb455be78
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7394961559020483888
+    second: a_city_of_destruction_company_object_a_0
+  - first:
+      213: 3910337308676179419
+    second: a_city_of_destruction_company_object_a_1
+  - first:
+      213: 4448486656596759377
+    second: a_city_of_destruction_company_object_a_2
+  - first:
+      213: -9105075598725877713
+    second: a_city_of_destruction_company_object_a_3
+  - first:
+      213: 8174655060183308387
+    second: a_city_of_destruction_company_object_a_4
+  - first:
+      213: -6965812807287956236
+    second: a_city_of_destruction_company_object_a_5
+  - first:
+      213: 1745754622675214563
+    second: a_city_of_destruction_company_object_a_6
+  - first:
+      213: -926290985616936289
+    second: a_city_of_destruction_company_object_a_7
+  - first:
+      213: 6352837393609849400
+    second: a_city_of_destruction_company_object_a_8
+  - first:
+      213: -5733785604188800472
+    second: a_city_of_destruction_company_object_a_9
+  - first:
+      213: 4798003850429826150
+    second: a_city_of_destruction_company_object_a_10
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: a_city_of_destruction_company_object_a_0
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 559
+        width: 248
+        height: 366
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ccdd42f6827e493bbc7a6d3a7b99367
+      internalID: 7394961559020483888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_city_of_destruction_company_object_a_1
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 548
+        width: 127
+        height: 358
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f70fdc90716f4afd9fa3dd9b34e8a83
+      internalID: 3910337308676179419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_city_of_destruction_company_object_a_2
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 530
+        width: 135
+        height: 410
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c12b938bf0324588b4dce039ff91dc2
+      internalID: 4448486656596759377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_city_of_destruction_company_object_a_3
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 506
+        width: 94
+        height: 336
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d8fdfd12691944f0bec10bcb71402e8
+      internalID: -9105075598725877713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_city_of_destruction_company_object_a_4
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 511
+        width: 93
+        height: 336
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dbd78440f3a248ef9eda179cba8f0fe
+      internalID: 8174655060183308387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_city_of_destruction_company_object_a_5
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 282
+        width: 176
+        height: 189
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95900ff9688b34f16a44f26760252ed6
+      internalID: -6965812807287956236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_city_of_destruction_company_object_a_7
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 282
+        width: 176
+        height: 188
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 527b0eada0a8b470d80ce0f63f869964
+      internalID: -926290985616936289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_city_of_destruction_company_object_a_9
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 260
+        width: 233
+        height: 214
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7156efd40a8749429a6333bb56c02db
+      internalID: -5733785604188800472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: a_city_of_destruction_company_object_a_10
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 262
+        width: 243
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f2d8fd1350cb435f814e608102f8ac4
+      internalID: 4798003850429826150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -29,7 +29,7 @@ public class Character : MonoBehaviour
         float xAxis = moveDir.x;
         Vector3 eulerAngles = tr.localEulerAngles;
 
-        if (xAxis > 0f) {
+        if (xAxis >= 0f) {
             eulerAngles.y = 180;
             moveDir.x *= -1f;
         } else if (xAxis < 0f) eulerAngles.y = 0f;

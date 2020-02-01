@@ -801,9 +801,9 @@ GameObject:
   m_Component:
   - component: {fileID: 249959830}
   - component: {fileID: 249959829}
-  - component: {fileID: 249959828}
   - component: {fileID: 249959827}
   - component: {fileID: 249959826}
+  - component: {fileID: 249959828}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -857,11 +857,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 249959825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c44a71ed8d9044c49a03513ab23dabfb, type: 3}
+  m_Script: {fileID: 11500000, guid: 60bb299f2104d4d4f8fba642eb2e563a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
-  joystick: {fileID: 841545992}
+  dialogue:
+    sentences:
+    - "\uCCAB\uBC88\uCA30 \uD14C\uC2A4\uD2B8 \uBB38\uC7A5\n\uBB38\uC7A5\uBB38\uC7A5"
+    - "\uB450\uBC88\uCA30 \uD14C\uC2A4\uD2B8 \uBB38\uC7A5\n\uC7A5\uBB38\uC7A5\uBB38\uC7A5\uBB38\uC7A5"
+    - "\uC138\uBC88\uCA30 \uD14C\uC2A4\uD2B8 \uBB38\uC7A5\n\uBB38\uC7A5\uBB38\uC7A5\uB108\uC544\uB9B0\uC5B4\uB9AC\u314F\u3134\u3147\u3139\u3134"
+    - "\uBC88\uCA30 \uD14C\uC2A4\uD2B8 \uBB38\uC7A5\n\u3134\uC544\uB7EC\u3163\uB098\uC5B4\uB9AC\u314F\u3134\uC5B4\uB9AC\u314F\uB108\uB2E4\u3163\u3153\u3139\uB2C8\u314F"
+    dialogueWindows:
+    - {fileID: 21300000, guid: d992a5e7d5e9b37479066e77bc08d2e1, type: 3}
+    - {fileID: 21300000, guid: d992a5e7d5e9b37479066e77bc08d2e1, type: 3}
+    - {fileID: 21300000, guid: d992a5e7d5e9b37479066e77bc08d2e1, type: 3}
+    - {fileID: 21300000, guid: d992a5e7d5e9b37479066e77bc08d2e1, type: 3}
 --- !u!95 &249959829
 Animator:
   serializedVersion: 3
@@ -3033,6 +3042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 698361587}
   - component: {fileID: 698361588}
+  - component: {fileID: 698361589}
   m_Layer: 0
   m_Name: Dialogue_basic
   m_TagString: Untagged
@@ -3048,7 +3058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 698361586}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -168, z: -2531.2502}
+  m_LocalPosition: {x: 0, y: -292, z: -2531.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1079111428}
@@ -3103,6 +3113,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &698361589
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698361586}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 25ce25cb95d79774fb85f495a9755279, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &829984172
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,7 +3697,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 1225162999
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!224 &952032789
 RectTransform:
@@ -3746,6 +3775,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1079111428}
+  - component: {fileID: 1079111429}
   m_Layer: 5
   m_Name: Dialogue Manager
   m_TagString: Untagged
@@ -3774,6 +3804,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1079111429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1079111427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2d0dec72ae7c83489ad17bc25d4f6b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1966819605}
+  dialogueRenderer: {fileID: 698361588}
+  animDialogueWindow: {fileID: 698361589}
+  talking: 0
 --- !u!1 &1087405759
 GameObject:
   m_ObjectHideFlags: 0
@@ -15055,7 +15101,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 1}
@@ -15366,8 +15412,8 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: New Text
 --- !u!222 &1966819606

@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: e1e000280903d417aa7386ff1099ee34, type: 3}
-    totalSpriteSurfaceArea: 4545734
+    totalSpriteSurfaceArea: 4987104
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -83,6 +83,7 @@ SpriteAtlas:
   - {fileID: 8174655060183308387, guid: 850a4d45f58ac44ddb313a4bb455be78, type: 3}
   - {fileID: -6965812807287956236, guid: 850a4d45f58ac44ddb313a4bb455be78, type: 3}
   - {fileID: 21300000, guid: e71f4a36d6a27da4bb8e4d158b4c6339, type: 3}
+  - {fileID: 21300000, guid: d992a5e7d5e9b37479066e77bc08d2e1, type: 3}
   - {fileID: -754090449186255724, guid: d1492a7fd08eb4265b7abccd348ab5c3, type: 3}
   - {fileID: 2805035402521988681, guid: d1492a7fd08eb4265b7abccd348ab5c3, type: 3}
   - {fileID: 8367462423787298172, guid: d1492a7fd08eb4265b7abccd348ab5c3, type: 3}
@@ -129,6 +130,7 @@ SpriteAtlas:
   - a_city_of_destruction_company_object_a_4
   - a_city_of_destruction_company_object_a_5
   - a_city_of_destruction_company_building_a
+  - Dialogue_basic
   - a_city_of_destruction_company_sidewalk_tile_6
   - a_city_of_destruction_company_sidewalk_tile_7
   - a_city_of_destruction_company_sidewalk_tile_4

@@ -82,7 +82,7 @@ public class DialogueManager : MonoBehaviour
 	private void Update() {
 
 		if (talking) {
-			if (Input.GetKeyDown(KeyCode.Z)) {
+			if (Input.GetMouseButtonDown(0)) {
 				count++;
 				text.text = "";
 

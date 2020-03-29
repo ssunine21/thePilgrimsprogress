@@ -43,14 +43,17 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: e1e000280903d417aa7386ff1099ee34, type: 3}
-    totalSpriteSurfaceArea: 4987104
+    totalSpriteSurfaceArea: 11647235
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 305c3532ddacc3d4a92727ccee1c7146, type: 3}
   - {fileID: 4679679270132767148, guid: 0516ce925ebfa4e9c9aa288894c7092f, type: 3}
   - {fileID: 2843611025079826277, guid: 0516ce925ebfa4e9c9aa288894c7092f, type: 3}
   - {fileID: 3965972995940755869, guid: 0516ce925ebfa4e9c9aa288894c7092f, type: 3}
   - {fileID: -5139069949918960454, guid: 0516ce925ebfa4e9c9aa288894c7092f, type: 3}
+  - {fileID: -519953912283431496, guid: 011c14b28e31c6b438208c02ef7f0e2c, type: 3}
+  - {fileID: -9086369338926393230, guid: 011c14b28e31c6b438208c02ef7f0e2c, type: 3}
   - {fileID: 2812237166971127058, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
   - {fileID: -275424925667535449, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
   - {fileID: 7463502638467202225, guid: 4a9279e3e3b7840f486ab4c0e29e6524, type: 3}
@@ -84,6 +87,17 @@ SpriteAtlas:
   - {fileID: -6965812807287956236, guid: 850a4d45f58ac44ddb313a4bb455be78, type: 3}
   - {fileID: 21300000, guid: e71f4a36d6a27da4bb8e4d158b4c6339, type: 3}
   - {fileID: 21300000, guid: d992a5e7d5e9b37479066e77bc08d2e1, type: 3}
+  - {fileID: -8667466294985060184, guid: 5e4994a9e73e98b44a225224375f80f2, type: 3}
+  - {fileID: 5281997702118322174, guid: 5e4994a9e73e98b44a225224375f80f2, type: 3}
+  - {fileID: -6577636216558059941, guid: 60a53dedb84a1d346a44fe11d235a722, type: 3}
+  - {fileID: -2515086937464592787, guid: 60a53dedb84a1d346a44fe11d235a722, type: 3}
+  - {fileID: -1097197371582578094, guid: 60a53dedb84a1d346a44fe11d235a722, type: 3}
+  - {fileID: -6082504086751217739, guid: 60a53dedb84a1d346a44fe11d235a722, type: 3}
+  - {fileID: -6592917148564881702, guid: 60a53dedb84a1d346a44fe11d235a722, type: 3}
+  - {fileID: 5533692869917279359, guid: 60a53dedb84a1d346a44fe11d235a722, type: 3}
+  - {fileID: 7017808670583949945, guid: 60a53dedb84a1d346a44fe11d235a722, type: 3}
+  - {fileID: -7634051147827089364, guid: 60a53dedb84a1d346a44fe11d235a722, type: 3}
+  - {fileID: -7334524173116004086, guid: 60a53dedb84a1d346a44fe11d235a722, type: 3}
   - {fileID: -754090449186255724, guid: d1492a7fd08eb4265b7abccd348ab5c3, type: 3}
   - {fileID: 2805035402521988681, guid: d1492a7fd08eb4265b7abccd348ab5c3, type: 3}
   - {fileID: 8367462423787298172, guid: d1492a7fd08eb4265b7abccd348ab5c3, type: 3}
@@ -93,11 +107,15 @@ SpriteAtlas:
   - {fileID: -2492002026758457267, guid: d1492a7fd08eb4265b7abccd348ab5c3, type: 3}
   - {fileID: -4722124781397966638, guid: d1492a7fd08eb4265b7abccd348ab5c3, type: 3}
   - {fileID: 2877594894744578853, guid: d1492a7fd08eb4265b7abccd348ab5c3, type: 3}
+  - {fileID: 21300000, guid: 75f7a9cfd8abe114e8cb608dee1073f8, type: 3}
   m_PackedSpriteNamesToIndex:
+  - backtower
   - a_city_of_destruction_company_road_tile_2
   - a_city_of_destruction_company_road_tile_3
   - a_city_of_destruction_company_road_tile_0
   - a_city_of_destruction_company_road_tile_1
+  - tile_2_1
+  - tile_2_0
   - character_christian_sd_LArm
   - character_christian_sd_closeMouse
   - character_christian_sd_openMouse
@@ -131,6 +149,17 @@ SpriteAtlas:
   - a_city_of_destruction_company_object_a_5
   - a_city_of_destruction_company_building_a
   - Dialogue_basic
+  - tree_0
+  - tree_1
+  - tile_1_2
+  - tile_1_3
+  - tile_1_0
+  - tile_1_1
+  - tile_1_6
+  - tile_1_7
+  - tile_1_4
+  - tile_1_5
+  - tile_1_8
   - a_city_of_destruction_company_sidewalk_tile_6
   - a_city_of_destruction_company_sidewalk_tile_7
   - a_city_of_destruction_company_sidewalk_tile_4
@@ -140,5 +169,6 @@ SpriteAtlas:
   - a_city_of_destruction_company_sidewalk_tile_0
   - a_city_of_destruction_company_sidewalk_tile_1
   - a_city_of_destruction_company_sidewalk_tile_8
+  - water
   m_Tag: SpriteAtlas
   m_IsVariant: 0

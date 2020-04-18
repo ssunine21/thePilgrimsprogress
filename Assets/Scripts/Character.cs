@@ -27,16 +27,19 @@ public class Character : MonoBehaviour
        // animator.SetFloat("Forward", Mathf.Abs(xAxis));
 
         float xAxis = moveDir.x;
-        Vector3 eulerAngles = tr.localEulerAngles;
+        float yAxis = moveDir.y;
 
-        if (xAxis >= 0f) {
-            eulerAngles.y = 180;
-            moveDir.x *= -1f;
-        } else if (xAxis < 0f) eulerAngles.y = 0f;
+        Vector3 characterDirection = tr.localScale;
 
-        tr.localRotation = Quaternion.Euler(eulerAngles);
+        if (xAxis > 0f) {
+            characterDirection.x = -1;
+            //moveDir.x *= -1f;
+        } else if (xAxis < 0) {
+            characterDirection.x = 1;
+        }
+        tr.localScale = characterDirection;
         tr.Translate(moveDir * moveSpeed * Time.deltaTime);
 
-        animator.SetFloat("Walk", value: Mathf.Abs(xAxis));
+        animator.SetFloat("Walk", value: Mathf.Abs(xAxis) + Mathf.Abs(yAxis));
     }
 }

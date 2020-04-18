@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class PlayerControl : Character
 {
-    public Joystick joystick;
+    public static PlayerControl init;
+
+    private void Awake() {
+        if(init == null) {
+            init = this;
+        }
+    }
 
     private void Start() {
         animator = GetComponent<Animator>();
@@ -22,9 +28,11 @@ public class PlayerControl : Character
     }
 
     public void HandleInput() {
-        float h = joystick.GetHorizontal();
-        float v = joystick.GetVertical();
+        //float h = joystick.GetHorizontal();
+        //float v = joystick.GetVertical();
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
 
-        moveDir = new Vector3(h, v, 0).normalized;
+        moveDir = new Vector2(h, v).normalized;
     }
 }

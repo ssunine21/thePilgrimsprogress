@@ -1,3 +1,4 @@
-﻿no,name,chacater,script
-101,길막기,1,아직 지나갈 수 없습니다.
-101,,,지나갈 수 없습니다.
+﻿no,questname,chacater,script,nextquest,release
+101,,,아직 지나갈 수 없습니다.,,
+102,,거짓전도꾼,어머니 하나님만이 우리의 구원입니다.,,101
+102,,,fff,,

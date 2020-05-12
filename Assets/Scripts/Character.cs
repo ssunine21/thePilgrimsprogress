@@ -5,8 +5,8 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public int moveSpeed;
+    public Vector3 moveDir;
 
-    protected Vector3 moveDir;
     protected Transform tr;
     protected Animator animator;
 
@@ -40,6 +40,7 @@ public class Character : MonoBehaviour
         tr.localScale = characterDirection;
         tr.Translate(moveDir * moveSpeed * Time.deltaTime);
 
-        animator.SetFloat("Walk", value: Mathf.Abs(xAxis) + Mathf.Abs(yAxis));
+        if (animator) animator.SetFloat("Walk", value: Mathf.Abs(xAxis) + Mathf.Abs(yAxis));
+        else Debug.Log("noAnimation");
     }
 }

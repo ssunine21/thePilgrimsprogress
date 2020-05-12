@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour
 	public Text text;
 	public SpriteRenderer dialogueRenderer;
 
+	private QuestProperties currQuestProperties;
 	private List<string> listSentences;
 	public Sprite listDialogueWindows;
 
@@ -40,8 +41,11 @@ public class DialogueManager : MonoBehaviour
 		PLAYER_MOVE_SPEED = PlayerControl.init.moveSpeed;
 	}
 
-	public void ShowDialogue(List<string> sentences) {
-		setStop();
+	public void ShowDialogue(List<string> sentences, QuestProperties currQuest) {
+		if (currQuest) currQuestProperties = currQuest;
+		else Debug.LogError("currQuest data is null");
+
+		onSentencesEnter();
 
 		talking = true;
 
@@ -54,7 +58,7 @@ public class DialogueManager : MonoBehaviour
 	}
 
 	public void ExitDialogue() {
-		setPlay();
+		onSentencesExit();
 
 		text.text = "";
 		count = 0;
@@ -96,11 +100,13 @@ public class DialogueManager : MonoBehaviour
 		}
 	}
 
-	private void setStop() {
+	private void onSentencesEnter() {
 		PlayerControl.init.moveSpeed = 0;
+		currQuestProperties.onSentencesEnter();
 	}
 
-	private void setPlay() {
+	private void onSentencesExit() {
 		PlayerControl.init.moveSpeed = PLAYER_MOVE_SPEED;
+		currQuestProperties.onSentenceExit();
 	}
 }

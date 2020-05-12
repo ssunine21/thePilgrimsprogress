@@ -6,6 +6,7 @@ public class PlayerControl : Character
 {
     public static PlayerControl init;
 
+
     private void Awake() {
         if(init == null) {
             init = this;

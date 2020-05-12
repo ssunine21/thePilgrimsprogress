@@ -26,13 +26,13 @@ public class QuestManager : MonoBehaviour
 		dialogueManager = FindObjectOfType<DialogueManager>();
 	}
 
-	public void InsertQuest(string questNum) {
+	public void InsertQuest(string questNum, QuestProperties currQuest) {
 		for (var i = 0; i < questData.Count; ++i) {
 			if (questData[i]["no"].ToString().Equals(questNum)) {
 
 				while (i < questData.Count) {
 					if (!questData[i]["no"].ToString().Equals(questNum) && !questData[i]["no"].ToString().Equals("")) {
-						SendSentences();
+						SendSentences(currQuest);
 						return;
 					}
 					sentences.Add((string)questData[i]["script"]);
@@ -40,14 +40,14 @@ public class QuestManager : MonoBehaviour
 					++i;
 				}
 
-				SendSentences();
+				SendSentences(currQuest);
 				return;
 			}
 		}
 	}
 
-	private void SendSentences() {
-		dialogueManager.ShowDialogue(sentences);
+	private void SendSentences(QuestProperties currQuest) {
+		dialogueManager.ShowDialogue(sentences, currQuest);
 		sentences.Clear();
 	}
 }

@@ -6,6 +6,16 @@ public class PlayerControl : Character
 {
     public static PlayerControl init;
 
+    private float h;
+    private float v;
+
+    private bool _isSystemControl;
+    public bool isSystemControl {
+        get => _isSystemControl;
+        set {
+            _isSystemControl = value;
+        }
+    }
 
     private void Awake() {
         if(init == null) {
@@ -18,6 +28,7 @@ public class PlayerControl : Character
 
         moveDir = Vector3.zero;
         tr = this.transform;
+        isSystemControl = false;
     }
 
     private void Update() {
@@ -28,12 +39,25 @@ public class PlayerControl : Character
         Move();
     }
 
+    public void setDirect(Vector2 direct) {
+        this.h = direct.x;
+        this.v = direct.y;
+    }
+
+    public Vector2 getDirect() {
+        return new Vector2(this.h, this.v);
+    }
+
     public void HandleInput() {
         //float h = joystick.GetHorizontal();
         //float v = joystick.GetVertical();
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
+
+        if (!isSystemControl) {
+            h = Input.GetAxisRaw("Horizontal");
+            v = Input.GetAxisRaw("Vertical");
+        }
 
         moveDir = new Vector2(h, v).normalized;
     }
+
 }

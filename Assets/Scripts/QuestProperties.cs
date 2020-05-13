@@ -8,17 +8,18 @@ public enum PROPERTIES {
 }
 public class QuestProperties : MonoBehaviour
 {
+	private const float REFLECTION_TIME = 0.1f;
 
 	public PROPERTIES properties;
 	public string questNumber = "";
 
 	private QuestManager questManager;
-	private GameObject playerObject;
-	private Vector3 playerDirection;
+	private PlayerControl playerControl;
+	private Vector2 playerDirection;
 
 	private void Start() {
 		questManager = FindObjectOfType<QuestManager>();
-		playerDirection = Vector3.zero;
+		playerDirection = Vector2.zero;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
@@ -26,8 +27,9 @@ public class QuestProperties : MonoBehaviour
 			Debug.Log("onCollider");
 			questManager.InsertQuest(questNumber, this);
 
-			playerObject = collision.gameObject;
-			playerDirection = (this.transform.position - collision.transform.position).normalized;
+			playerControl = collision.GetComponent<PlayerControl>();
+			playerDirection = playerControl.getDirect();
+			Debug.Log(playerDirection);
 		}
 	}
 
@@ -37,9 +39,7 @@ public class QuestProperties : MonoBehaviour
 	public void onSentenceExit() {
 		switch (properties) {
 			case PROPERTIES.BLOCK:
-
-				playerObject.transform.Translate(playerDirection);
-				//StartCoroutine("Oppositydirection");
+				StartCoroutine("Reflection");
 				break;
 			case PROPERTIES.NPC:
 				Debug.Log("position is " + properties.ToString());
@@ -48,15 +48,12 @@ public class QuestProperties : MonoBehaviour
 				break;
 		}
 	}
+    IEnumerator Reflection() {
+		playerControl.isSystemControl = true;
+		playerControl.setDirect(playerDirection * -1);
 
-	IEnumerator Oppositydirection() {
-		int i = 0;
-		while(i < 100) {
-			i++;
+		yield return new WaitForSeconds(REFLECTION_TIME);
 
-			playerObject.transform.Translate(playerDirection * Time.deltaTime);
-			yield return null;
-		}
+		playerControl.isSystemControl = false;
 	}
-
 }

@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+
+
 
 [System.Serializable]
 public struct CharacterProductionList {
@@ -12,23 +13,17 @@ public struct CharacterProductionList {
     public float delayTime;
 }
 
-public struct CameraProductionList {
+[System.Serializable]
+public enum Production // your custom enumeration
+{
+    Character,
+    Camera,
+    Object
+};
 
-}
-
-public enum ProductionList {
-    CharacterProductionList,
-    CameraProductionList
-}
-
-[CustomEditor(typeof(ProductionManager))]
-public class ProductionManager : Editor {
-    public override void OnInspectorGUI() {
-        base.OnInspectorGUI();
-
-        if (GUILayout.Box()) {
-
-        }
-    }
+public class ProductionManager : MonoBehaviour
+{
+    public Production production;
+    public ArrayList prodectionList;
 
 }

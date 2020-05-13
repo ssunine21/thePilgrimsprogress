@@ -18058,7 +18058,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1930703406}
   - component: {fileID: 1930703408}
-  - component: {fileID: 1930703407}
   - component: {fileID: 1930703410}
   - component: {fileID: 1930703411}
   m_Layer: 0
@@ -18084,18 +18083,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1930703407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1930703405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebcfad2b25a8a4ded90f424ec897f124, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1930703408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18348,6 +18335,8 @@ GameObject:
   - component: {fileID: 2042861478}
   - component: {fileID: 2042861477}
   - component: {fileID: 2042861479}
+  - component: {fileID: 2042861481}
+  - component: {fileID: 2042861480}
   m_Layer: 0
   m_Name: trriger
   m_TagString: Untagged
@@ -18409,6 +18398,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   properties: 0
   questNumber: 101
+--- !u!114 &2042861480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042861476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebcfad2b25a8a4ded90f424ec897f124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2042861481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042861476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d489fbef0996aa45ba807524a01cf5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  production: 0
 --- !u!1 &2056833758
 GameObject:
   m_ObjectHideFlags: 0

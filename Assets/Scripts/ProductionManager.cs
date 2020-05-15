@@ -3,15 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public enum Production // your custom enumeration
+[System.Serializable]
+public enum Type // your custom enumeration
 {
     Character,
     Camera,
     Object
 };
 
+public enum Production {
+    Position,
+    MoveSpeed,
+    DelayTime,
+    Script,
+    Animation
+}
+
 [System.Serializable]
-public class ProductionList {
+public class Objects {
+    public GameObject gameObject;
+    public ProductionArray[] productionArray;
+}
+
+[System.Serializable]
+public class ProductionArray {
     public Vector2 pos;
     public float moveSpeed;
     public float delayTime;
@@ -20,35 +35,30 @@ public class ProductionList {
 
 public class ProductionManager : MonoBehaviour
 {
-    [SerializeField]
-    private Vector3 m_TargetPosition = new Vector3(1f, 0f, 2f);
-    public Production production;
-    public List<ProductionList> productionList = new List<ProductionList>();
 
-    private Vector3 snap;
+    public Type type;
+    public Objects[] objects;
 
-    ProductionManager() {
-        productionList[0].pos = this.transform.position;
-    }
+    private Vector3 snap = Vector3.zero;
+
 
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position, Vector2.one);
 
-        for (int i = 0; i < productionList.Count; ++i) {
-            if (i == 0) productionList[0].pos = this.transform.position;
-            productionList[i].pos = Handles.PositionHandle(productionList[i].pos, Quaternion.identity);
 
-            if (productionList.Count - 1 == i) {
-                break;
-            } else
-                Handles.DrawLine(productionList[i].pos, productionList[i + 1].pos);
-        }
+        //if (objects.Length > 0) {
+        //    for (int i = 0; i < objects.Length; ++i) {
+        //        if (i == 0) objects[0].pos = this.transform.position;
+        //        objects[i].pos = Handles.PositionHandle(objects[i].pos, Quaternion.identity);
 
-    }
+        //        if (objects.Length - 1 == i) {
+        //            break;
+        //        } else
+        //            Handles.DrawLine(objects[i].pos, objects[i + 1].pos);
+        //    }
+        //}
 
-    public virtual void Update() {
-        transform.LookAt(m_TargetPosition);
     }
 
     Vector2 PositionHandle(Vector2 transform) {

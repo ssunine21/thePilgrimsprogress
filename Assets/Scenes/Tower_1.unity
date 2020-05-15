@@ -18350,7 +18350,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042861476}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -18377,7 +18377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2042861476}
   m_LocalRotation: {x: -0, y: -0, z: 0.49546742, w: 0.8686266}
-  m_LocalPosition: {x: -14.92, y: 10.89, z: 0}
+  m_LocalPosition: {x: -2.74, y: 14.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 537482407}
@@ -18409,17 +18409,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d489fbef0996aa45ba807524a01cf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_TargetPosition: {x: 1, y: 0, z: 2}
   production: 0
   productionList:
-  - pos: {x: -14.92, y: 10.89}
+  - pos: {x: -2.74, y: 14.8}
     moveSpeed: 0
     delayTime: 0
     anim: {fileID: 0}
-  - pos: {x: -14.92, y: 10.89}
+  - pos: {x: -7.98, y: 14.99}
     moveSpeed: 0
     delayTime: 0
     anim: {fileID: 0}
-  - pos: {x: -14.92, y: 10.89}
+  - pos: {x: -11.3, y: 10.89}
     moveSpeed: 0
     delayTime: 0
     anim: {fileID: 0}

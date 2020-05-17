@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditorInternal;
 
 //[CanEditMultipleObjects]
-[CustomEditor(typeof(ProductionManager))]
+//[CustomEditor(typeof(ProductionManager))]
 public class ProductionInspector : Editor {
 
     ProductionManager productionManager;

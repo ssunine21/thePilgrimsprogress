@@ -27,7 +27,7 @@ public class Objects {
 
 [System.Serializable]
 public class ProductionArray {
-    public Vector2 pos;
+    public Vector3 pos;
     public float moveSpeed;
     public float delayTime;
     public Animation anim;
@@ -38,8 +38,17 @@ public class ProductionManager : MonoBehaviour
 
     public Type type;
     public Objects[] objects;
+    public bool isStart = false;
+
+    int i = 0;
+
+    Vector2 finishPos;
 
     private Vector3 snap = Vector3.zero;
+
+    private void Start() {
+        finishPos = Vector2.zero;
+    }
 
 
     void OnDrawGizmosSelected() {
@@ -47,32 +56,47 @@ public class ProductionManager : MonoBehaviour
         Gizmos.DrawCube(transform.position, Vector2.one);
 
 
-        //if (objects.Length > 0) {
-        //    for (int i = 0; i < objects.Length; ++i) {
-        //        if (i == 0) objects[0].pos = this.transform.position;
-        //        objects[i].pos = Handles.PositionHandle(objects[i].pos, Quaternion.identity);
+        if (objects.Length > 0) {
 
-        //        if (objects.Length - 1 == i) {
-        //            break;
-        //        } else
-        //            Handles.DrawLine(objects[i].pos, objects[i + 1].pos);
-        //    }
-        //}
+            if (objects[0].productionArray.Length > 0) {
 
+                for (int i = 0; i < objects.Length; ++i) {
+
+
+
+                    for(int j = 0; j < objects[i].productionArray.Length; ++j) {
+                        if (objects[i].productionArray.Length - 1 == j) {
+                            objects[i].productionArray[j].pos = Handles.PositionHandle(objects[i].productionArray[j].pos, Quaternion.identity);
+                            break;
+                        } else
+                            Handles.DrawLine(objects[i].productionArray[j].pos, objects[i].productionArray[j + 1].pos);
+
+                        if (j == 0) {
+                            objects[0].productionArray[0].pos = this.transform.position;
+                            continue;
+                        }
+                        if (objects[i].productionArray[j].pos != Vector3.zero) {
+                            objects[i].productionArray[j].pos = Handles.PositionHandle(objects[i].productionArray[j].pos, Quaternion.identity);
+                        }
+
+                    }
+
+                    //if (objects[i].productionArray)
+                    //    objects[i].productionArray = Handles.PositionHandle(objects[i].pos, Quaternion.identity);
+
+                }
+            }
+        }
     }
 
-    Vector2 PositionHandle(Vector2 transform) {
 
-        var position = transform;
-        var size = 1;
+    private void FixedUpdate() {
+        if (isStart) {
+            if (objects[0].productionArray.Length < i) return;
 
-        Handles.color = Handles.xAxisColor;
-        position = Handles.Slider(position, Vector3.right, size, Handles.ArrowHandleCap, snap.x);
-
-        //Y축
-        Handles.color = Handles.yAxisColor;
-        position = Handles.Slider(position, Vector3.up, size, Handles.ArrowHandleCap, snap.y);
-
-        return position;
+            if (Vector3.Distance(objects[0].gameObject.transform.position, objects[0].productionArray[i + 1].pos) >= 0.01f)
+                objects[0].gameObject.transform.localPosition = Vector3.MoveTowards(objects[0].gameObject.transform.position, objects[0].productionArray[i + 1].pos, 8 * Time.deltaTime);
+            else ++i;
+        }
     }
 }

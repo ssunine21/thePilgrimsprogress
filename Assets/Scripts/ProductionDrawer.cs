@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 
-[CustomPropertyDrawer(typeof(Objects))]
+//[CustomPropertyDrawer(typeof(Objects))]
 public class ProductionDrawer : PropertyDrawer {
     class Data {
         public GameObject game = null;
@@ -17,7 +17,7 @@ public class ProductionDrawer : PropertyDrawer {
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
 
-        Data productionData;
+        //Data productionData;
 
         //if (!propertyData.TryGetValue(property.propertyPath, out productionData)) {
         //    productionData = new Data();

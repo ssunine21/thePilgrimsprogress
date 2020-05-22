@@ -4,35 +4,68 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 
-//[CustomPropertyDrawer(typeof(Objects))]
+//[CustomPropertyDrawer(typeof(ProductionArray))]
 public class ProductionDrawer : PropertyDrawer {
-    class Data {
-        public GameObject game = null;
-        public ProductionArray[] productionArrays = null;
-    }
 
-    ReorderableList productionList;
-
-    Dictionary<string, Data> propertyData = new Dictionary<string, Data>();
+    private Objects objects;
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+        //base.OnGUI(position, property, label);
 
-        //Data productionData;
+        using (new EditorGUI.PropertyScope(position, label, property)) {
+            position.x += 10;
+            if (property.isExpanded = EditorGUI.Foldout(position, property.isExpanded, GUIContent.none)) {
 
-        //if (!propertyData.TryGetValue(property.propertyPath, out productionData)) {
-        //    productionData = new Data();
-        //    propertyData[property.propertyPath] = productionData;
-        //}
+                var halfWidth = position.width * 0.5f;
 
-        var gameObject = property.FindPropertyRelative("gameObject");
-        var productionArray = property.FindPropertyRelative("productionArray");
+                var keyRect = new Rect(position) {
+                    y = EditorGUIUtility.singleLineHeight + 6
+                };
+                var valueRect = new Rect(keyRect) {
+                    y = keyRect.y + EditorGUIUtility.singleLineHeight + 6
+                };
 
-        EditorGUI.PropertyField(position, gameObject);
+                var key = property.FindPropertyRelative("key");
+                var value = property.FindPropertyRelative("value");
 
-        if (productionList == null) {
-            productionList = new ReorderableList(productionArray.serializedObject, productionArray, true, true, true, true);
+                //EditorGUILayout.ObjectField(gameObject);
+                EditorGUILayout.PropertyField(key);
+                EditorGUILayout.PropertyField(value);
+            }
         }
-
-        productionList.DoLayoutList();
     }
 }
+
+//[CustomPropertyDrawer(typeof(Objects))]
+//public class ProductionDrawer : PropertyDrawer {
+
+//    private Objects objects;
+//    private ReorderableList production;
+
+//    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
+//        //base.OnGUI(position, property, label);
+
+//        using (new EditorGUI.PropertyScope(position, label, property)) {
+//            position.x += 10;
+//            if (property.isExpanded = EditorGUI.Foldout(position, property.isExpanded, new GUIContent("Unit"))) {
+
+//                var halfWidth = position.width * 0.5f;
+
+//                var gameObjectRect = new Rect(position) {
+//                    y = EditorGUIUtility.singleLineHeight + 6
+//                };
+//                var productionArrayRect = new Rect(gameObjectRect) {
+//                    y = gameObjectRect.y + EditorGUIUtility.singleLineHeight + 6
+//                };
+
+//                var gameObject = property.FindPropertyRelative("gameObject");
+//                var productionArray = property.FindPropertyRelative("productionArray");
+
+//                gameObject.objectReferenceValue = EditorGUI.ObjectField(
+//                    gameObjectRect, gameObject.objectReferenceValue, typeof(GameObject), false);
+//                //EditorGUILayout.ObjectField(gameObject);
+//                EditorGUILayout.PropertyField(productionArray);
+//            }
+//        }
+//    }
+//}

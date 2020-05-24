@@ -18409,16 +18409,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d489fbef0996aa45ba807524a01cf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objects:
-  - gameObject: {fileID: 0}
-    productionArray:
-    - key: 0
-      value:
-        pos: {x: 0, y: 0, z: 0}
-        moveSpeed: 0
-        delayTime: 0
-        anim: {fileID: 0}
-  productionArrays: []
+  productionType:
+  - productionKey: 1
+    gameObject: {fileID: 0}
+    pos: {x: 0, y: 0, z: 0}
+    moveSpeed: 0
+    delayTime: 0
+    anim: {fileID: 0}
+  - productionKey: 1
+    gameObject: {fileID: 0}
+    pos: {x: 0, y: 0, z: 0}
+    moveSpeed: 0
+    delayTime: 0
+    anim: {fileID: 0}
   isStart: 1
 --- !u!1 &2056833758
 GameObject:

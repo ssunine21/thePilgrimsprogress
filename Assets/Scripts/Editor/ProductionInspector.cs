@@ -4,26 +4,48 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 
-[CustomEditor(typeof(Objects))]
+[CustomEditor(typeof(ProductionManager))]
 public class ProductionInspector : Editor {
 
-    private ReorderableList production;
+    private ReorderableList productionType;
+    private ProductionKey productionKey;
+    private SerializedProperty prop;
 
     private void OnEnable() {
-        var prop = serializedObject.FindProperty("productionArray");
-        production = new ReorderableList(serializedObject, prop, true, true, true, true);
-        production.elementHeight = EditorGUIUtility.singleLineHeight;
+        prop = serializedObject.FindProperty("productionType");
+        productionType = new ReorderableList(serializedObject, prop, true, true, true, true);
+        //productionType.elementHeight = EditorGUIUtility.singleLineHeight;
 
-        production.drawElementCallback =
+        productionType.drawElementCallback =
             (Rect rect, int index, bool isActive, bool isFocused) => {
                 var element = prop.GetArrayElementAtIndex(index);
                 rect.y += 2;
-                EditorGUI.PropertyField(rect, element);
+
+                float width = rect.width * 0.5f;
+
+                this.productionKey = EditorGUI.IntPopup(new Rect(rect.x, rect.y, width, EditorGUIUtility.singleLineHeight),
+                    element.FindPropertyRelative("productionKey"), GUIContent.none);
+
+
+
+                switch (this.productionKey) {
+                    case ProductionKey.GameObject:
+                        EditorGUI.PropertyField(new Rect(rect.x + width, rect.y, width, EditorGUIUtility.singleLineHeight),
+                            element.FindPropertyRelative("gameObject"), GUIContent.none);
+                        break;
+
+                    case ProductionKey.pos:
+                        EditorGUI.PropertyField(new Rect(rect.x + width, rect.y, width, EditorGUIUtility.singleLineHeight),
+                            element.FindPropertyRelative("pos"), GUIContent.none);
+                        break;
+                }
             };
 
-        production.drawHeaderCallback = (rect) => {
-            EditorGUI.LabelField(rect, prop.displayName);
-        };
+
+
+        //productionType.drawHeaderCallback = (rect) => {
+        //    EditorGUI.LabelField(rect, prop.displayName);
+        //};
 
     }
 
@@ -32,7 +54,7 @@ public class ProductionInspector : Editor {
     // 유니티가 인스펙터를 GUI로 그려주는함수
     public override void OnInspectorGUI() {
         serializedObject.Update();
-        production.DoLayoutList();
+        productionType.DoLayoutList();
         serializedObject.ApplyModifiedProperties();
     }
 

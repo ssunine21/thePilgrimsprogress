@@ -5,13 +5,16 @@ using UnityEditor;
 
 [System.Serializable]
 public enum ProductionKey {
-    moveSpeed,
+    GameObject,
     pos,
-    nextTime,
+    moveSpeed,
+    delayTime,
     anim
 }
 [System.Serializable]
-public class ProductionValue {
+public class ProductionType {
+    public ProductionKey productionKey;
+    public GameObject gameObject;
     public Vector3 pos;
     public float moveSpeed;
     public float delayTime;
@@ -20,20 +23,13 @@ public class ProductionValue {
 [System.Serializable]
 public class ProductionArray {
     public ProductionKey key;
-    public ProductionValue value;
-}
-
-[System.Serializable]
-public class Objects {
-    public GameObject gameObject;
-    public ProductionArray[] productionArray;
+    public ProductionType value;
 }
 
 
 public class ProductionManager : MonoBehaviour
 {
-    public Objects[] objects;
-    public ProductionArray[] productionArrays;
+    public ProductionType[] productionType;
     public bool isStart = false;
 
     //private int i = 0;

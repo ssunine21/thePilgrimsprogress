@@ -35,6 +35,7 @@ public class QuestProperties : MonoBehaviour
 
 	public void onSentencesEnter() {
 
+
 	}
 	public void onSentenceExit() {
 		switch (properties) {

@@ -24,6 +24,8 @@ public class DialogueManager : MonoBehaviour
 	public SpriteRenderer dialogueRenderer;
 
 	private QuestProperties currQuestProperties;
+	private ObjectControl currProductionObject;
+
 	private List<string> listSentences;
 	public Sprite listDialogueWindows;
 
@@ -32,6 +34,7 @@ public class DialogueManager : MonoBehaviour
 	public Animator animDialogueWindow;
 
 	public bool talking = false;
+	public bool productionTalking = false;
 
 	private void Start() {
 		count = 0;
@@ -43,13 +46,25 @@ public class DialogueManager : MonoBehaviour
 
 	public void ShowDialogue(List<string> sentences, QuestProperties currQuest) {
 		if (currQuest) currQuestProperties = currQuest;
-		else Debug.LogError("currQuest data is null");
 
 		onSentencesEnter();
 
 		talking = true;
 
 		for(int i = 0; i < sentences.Count; ++i) {
+			listSentences.Add(sentences[i]);
+		}
+		//대화창 이미지
+		animDialogueWindow.SetBool("appear", true);
+		StartCoroutine("StartDialogueCoroutine");
+	}
+
+	public void ShowDialogue(List<string> sentences, ObjectControl currProductionObject) {
+		if (currProductionObject) this.currProductionObject = currProductionObject;
+
+		productionTalking = true;
+
+		for (int i = 0; i < sentences.Count; ++i) {
 			listSentences.Add(sentences[i]);
 		}
 		//대화창 이미지
@@ -67,6 +82,17 @@ public class DialogueManager : MonoBehaviour
 		animDialogueWindow.SetBool("appear", false);
 		talking = false;
 	}
+
+	public void ExitProductiondialogue() {
+		this.currProductionObject.isDialogue = false;
+
+		text.text = "";
+		count = 0;
+		listSentences.Clear();
+
+		animDialogueWindow.SetBool("appear", false);
+		productionTalking = false;
+    }
 
 	IEnumerator StartDialogueCoroutine() {
 
@@ -92,6 +118,20 @@ public class DialogueManager : MonoBehaviour
 				if (count == listSentences.Count) {
 					StopAllCoroutines();
 					ExitDialogue();
+				} else {
+					StopAllCoroutines();
+					StartCoroutine("StartDialogueCoroutine");
+				}
+			}
+		}
+		else if (productionTalking) {
+			if (Input.GetMouseButtonDown(0)) {
+				count++;
+				text.text = "";
+
+				if (count == listSentences.Count) {
+					StopAllCoroutines();
+					ExitProductiondialogue();
 				} else {
 					StopAllCoroutines();
 					StartCoroutine("StartDialogueCoroutine");

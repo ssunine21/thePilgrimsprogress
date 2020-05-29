@@ -7,10 +7,11 @@ public class Character : MonoBehaviour
     public int moveSpeed;
 
     protected Vector3 moveDir;
+
     protected Transform tr;
     protected Animator animator;
 
-    public void Move() {
+    protected void Move() {
 
         float xAxis = moveDir.x;
         float yAxis = moveDir.y;

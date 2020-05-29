@@ -5,82 +5,77 @@ using UnityEditor;
 
 [System.Serializable]
 public enum ProductionKey {
-    GameObject,
-    pos,
+    gameObject,
+    position,
     moveSpeed,
     delayTime,
-    anim
+    anim,
+    scriptNum
 }
 [System.Serializable]
 public class ProductionType {
+
     public ProductionKey productionKey;
     public GameObject gameObject;
-    public Vector3 pos;
-    public float moveSpeed;
+    public Vector2 pos;
+    public string scriptNum;
+    public int moveSpeed;
     public float delayTime;
     public Animation anim;
 }
-[System.Serializable]
-public class ProductionArray {
-    public ProductionKey key;
-    public ProductionType value;
-}
-
 
 public class ProductionManager : MonoBehaviour
 {
     public ProductionType[] productionType;
     public bool isStart = false;
 
+    private List<ObjectControl> tempObjects = new List<ObjectControl>();
+
+
     //private int i = 0;
     //private Vector2 finishPos;
     //private Vector3 snap = Vector3.zero;
 
     private void Start() {
-        //finishPos = Vector2.zero;
-    }
+        ObjectControl tempObject = null;
 
+        if(productionType.Length > 0) {
+            foreach(var prodiction in productionType) {
+                if (prodiction.productionKey.Equals(ProductionKey.gameObject)) {
+                    tempObject = prodiction.gameObject.GetComponent<ObjectControl>();
+                    tempObject.productionTypeList = new List<ProductionType>();
+                    tempObjects.Add(tempObject);
+                } else {
+                    tempObject.productionTypeList.Add(prodiction);
+                    tempObject.setDebug();
+                }
+            }
+        }
+    }
 
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position, Vector2.one);
+        Vector2 tempPos = Vector2.zero;
 
-
-        //if (objects.Length > 0) {
-
-        //    if (objects[0].productionValue.Length > 0) {
-
-        //        for (int i = 0; i < objects.Length; ++i) {
-
-
-
-        //            for(int j = 0; j < objects[i].productionValue.Length; ++j) {
-        //                if (objects[i].productionValue.Length - 1 == j) {
-        //                    objects[i].productionValue[j].pos = Handles.PositionHandle(objects[i].productionValue[j].pos, Quaternion.identity);
-        //                    break;
-        //                } else
-        //                    Handles.DrawLine(objects[i].productionValue[j].pos, objects[i].productionValue[j + 1].pos);
-
-        //                if (j == 0) {
-        //                    objects[0].productionValue[0].pos = this.transform.position;
-        //                    continue;
-        //                }
-        //                if (objects[i].productionValue[j].pos != Vector3.zero) {
-        //                    objects[i].productionValue[j].pos = Handles.PositionHandle(objects[i].productionValue[j].pos, Quaternion.identity);
-        //                }
-
-        //            }
-
-        //            //if (objects[i].productionArray)
-        //            //    objects[i].productionArray = Handles.PositionHandle(objects[i].pos, Quaternion.identity);
-
-        //        }
-        //    }
-        //}
+        foreach (var production in productionType) {
+            if (production.productionKey.Equals(ProductionKey.gameObject)) {
+                tempPos = new Vector2(production.gameObject.transform.position.x, production.gameObject.transform.position.y);
+            } else if (production.productionKey.Equals(ProductionKey.position)) {
+                Handles.DrawLine(tempPos, production.pos);
+                tempPos = production.pos;
+            }
+        }
     }
 
 
     private void FixedUpdate() {
+        if(isStart) {
+            foreach(var gameObject in tempObjects) {
+                gameObject.ProductionStart();
+            }
+            isStart = false;
+        }
         //if (isStart) {
         //    if (objects[0].productionValue.Length < i) return;
 

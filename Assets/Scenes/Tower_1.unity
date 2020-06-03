@@ -8429,6 +8429,7 @@ GameObject:
   - component: {fileID: 519796179}
   - component: {fileID: 519796178}
   - component: {fileID: 519796181}
+  - component: {fileID: 519796182}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8495,7 +8496,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519796177}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.657415, y: 5.784464, z: -10}
+  m_LocalPosition: {x: 6.74, y: 23.15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8516,6 +8517,21 @@ MonoBehaviour:
   target: {fileID: 1930703406}
   offset: {x: 0, y: 0, z: -10}
   followSpeed: 3
+--- !u!114 &519796182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519796177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8fb26e162bb413cb211a560a320721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 8
+  productionTypeList: []
+  isDialogue: 0
 --- !u!1 &536292248
 GameObject:
   m_ObjectHideFlags: 0
@@ -17163,6 +17179,7 @@ GameObject:
   - component: {fileID: 1930703408}
   - component: {fileID: 1930703410}
   - component: {fileID: 1930703411}
+  - component: {fileID: 1930703407}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -17178,7 +17195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930703405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3015187, y: 14.224913, z: 0}
+  m_LocalPosition: {x: 2.1568892, y: 19.230585, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1942849134}
@@ -17186,6 +17203,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1930703407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930703405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8fb26e162bb413cb211a560a320721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0
+  productionTypeList: []
+  isDialogue: 0
 --- !u!114 &1930703408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17449,30 +17481,37 @@ MonoBehaviour:
     moveSpeed: 0
     delayTime: 0
     anim: {fileID: 0}
+  - productionKey: 2
+    gameObject: {fileID: 1930703405}
+    pos: {x: 3.9649563, y: 18.829556}
+    scriptNum: 111b
+    moveSpeed: 3
+    delayTime: 0.5
+    anim: {fileID: 0}
   - productionKey: 1
     gameObject: {fileID: 1930703405}
-    pos: {x: 3.7659116, y: 19.108513}
+    pos: {x: 3.548062, y: 19.220938}
     scriptNum: 
     moveSpeed: 0
     delayTime: 0
     anim: {fileID: 0}
+  - productionKey: 5
+    gameObject: {fileID: 1930703405}
+    pos: {x: 3.7659116, y: 19.108513}
+    scriptNum: 111
+    moveSpeed: 0
+    delayTime: 0.5
+    anim: {fileID: 0}
   - productionKey: 3
     gameObject: {fileID: 1930703405}
-    pos: {x: 3.7659116, y: 19.108513}
-    scriptNum: 
+    pos: {x: 3.9649563, y: 18.829556}
+    scriptNum: 111b
     moveSpeed: 0
-    delayTime: 0.5
-    anim: {fileID: 0}
-  - productionKey: 5
-    gameObject: {fileID: 1930703405}
-    pos: {x: 3.7659116, y: 19.108513}
-    scriptNum: 111
-    moveSpeed: 0
-    delayTime: 0.5
+    delayTime: 1
     anim: {fileID: 0}
   - productionKey: 1
     gameObject: {fileID: 1930703405}
-    pos: {x: 0.9763484, y: 18.829556}
+    pos: {x: 1.528296, y: 18.981014}
     scriptNum: 111
     moveSpeed: 0
     delayTime: 0.5
@@ -17484,29 +17523,22 @@ MonoBehaviour:
     moveSpeed: 0
     delayTime: 0.5
     anim: {fileID: 0}
+  - productionKey: 3
+    gameObject: {fileID: 519796177}
+    pos: {x: 7.088349, y: 3.5213919}
+    scriptNum: 111b
+    moveSpeed: 0
+    delayTime: 1
+    anim: {fileID: 0}
   - productionKey: 1
     gameObject: {fileID: 1930703405}
-    pos: {x: 3.9649563, y: 18.829556}
+    pos: {x: 3.2088716, y: 19.01574}
     scriptNum: 111a
     moveSpeed: 0
     delayTime: 0.5
     anim: {fileID: 0}
   - productionKey: 5
     gameObject: {fileID: 1930703405}
-    pos: {x: 3.9649563, y: 18.829556}
-    scriptNum: 111b
-    moveSpeed: 0
-    delayTime: 0.5
-    anim: {fileID: 0}
-  - productionKey: 0
-    gameObject: {fileID: 519796177}
-    pos: {x: 3.9649563, y: 18.829556}
-    scriptNum: 111b
-    moveSpeed: 0
-    delayTime: 0.5
-    anim: {fileID: 0}
-  - productionKey: 1
-    gameObject: {fileID: 519796177}
     pos: {x: 3.9649563, y: 18.829556}
     scriptNum: 111b
     moveSpeed: 0

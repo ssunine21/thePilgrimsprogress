@@ -10,7 +10,8 @@ public enum ProductionKey {
     moveSpeed,
     delayTime,
     anim,
-    scriptNum
+    scriptNum,
+    division
 }
 [System.Serializable]
 public class ProductionType {
@@ -28,6 +29,7 @@ public class ProductionManager : MonoBehaviour
 {
     public ProductionType[] productionType;
     public bool isStart = false;
+    private bool division = false;
 
     private List<ObjectControl> tempObjects = new List<ObjectControl>();
 
@@ -41,10 +43,16 @@ public class ProductionManager : MonoBehaviour
 
         if(productionType.Length > 0) {
             foreach(var prodiction in productionType) {
+                if (prodiction.productionKey.Equals(ProductionKey.division)) division = true;
+
                 if (prodiction.productionKey.Equals(ProductionKey.gameObject)) {
+                    if (!division) prodiction.gameObject.GetComponent<ObjectControl>().preObject = tempObject;
+                  
                     tempObject = prodiction.gameObject.GetComponent<ObjectControl>();
                     tempObject.productionTypeList = new List<ProductionType>();
                     tempObjects.Add(tempObject);
+                    division = false;
+
                 } else {
                     tempObject.productionTypeList.Add(prodiction);
                     tempObject.setDebug();

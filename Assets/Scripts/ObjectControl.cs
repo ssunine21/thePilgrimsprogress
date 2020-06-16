@@ -6,15 +6,19 @@ public class ObjectControl : Character
 {
     [HideInInspector]
     public List<ProductionType> productionTypeList;
+    [HideInInspector]
+    public ObjectControl preObject;
 
     private bool isMove = false;
     public bool isDialogue = false;
+    public bool isProductionStop = false;
 
     private void Start() {
         tr = this.transform;
     }
 
     public void ProductionStart() {
+
         if (this.GetComponent<PlayerControl>() != null) this.GetComponent<PlayerControl>().enabled = false;
         else if (this.GetComponent<FollowCam>() != null) this.GetComponent<FollowCam>().enabled = false;
 
@@ -34,6 +38,13 @@ public class ObjectControl : Character
     }
 
     IEnumerator ProductionControl() {
+
+        while(preObject != null){
+            if (preObject.isProductionStop) preObject = null;
+
+            yield return null;
+        }
+
         foreach(var production in productionTypeList) {
             switch (production.productionKey) {
                 case ProductionKey.gameObject:
@@ -75,5 +86,7 @@ public class ObjectControl : Character
 
         if (this.GetComponent<PlayerControl>() != null) this.GetComponent<PlayerControl>().enabled = true;
         else if (this.GetComponent<FollowCam>() != null) this.GetComponent<FollowCam>().enabled = true;
+
+        isProductionStop = true;
     }
 }

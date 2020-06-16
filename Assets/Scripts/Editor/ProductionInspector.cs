@@ -90,7 +90,7 @@ public class ProductionInspector : Editor {
                 try {
                     vertex.gameObject.transform.position = Handles.PositionHandle(vertex.gameObject.transform.position, Quaternion.identity);
                 }catch(System.NullReferenceException e) {
-                    //
+                    e.GetHashCode();
                 }
             }
         }

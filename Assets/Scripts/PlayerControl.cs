@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : Character
-{
-    public static PlayerControl init;
-
-    private float h;
-    private float v;
-
-    private bool _isSystemControl;
+public class PlayerControl : MonoBehaviour {
+    private static PlayerControl _init;
+    public static PlayerControl init {
+        get {
+            if (_init == null)
+                _init = new PlayerControl();
+            return _init;
+        }
+    }
+    private bool _isSystemControl = false;
     public bool isSystemControl {
         get => _isSystemControl;
         set {
@@ -17,26 +19,17 @@ public class PlayerControl : Character
         }
     }
 
-    private void Awake() {
-        if(init == null) {
-            init = this;
-        }
-    }
+    private ObjectControl objectControl;
+
+    private float h;
+    private float v;
 
     private void Start() {
-        animator = GetComponent<Animator>();
-
-        moveDir = Vector3.zero;
-        tr = this.transform;
-        isSystemControl = false;
+        objectControl = this.GetComponent<ObjectControl>();
     }
 
     private void Update() {
         HandleInput();
-    }
-
-    private void FixedUpdate() {
-        Move();
     }
 
     public void setDirect(Vector2 direct) {
@@ -52,12 +45,10 @@ public class PlayerControl : Character
         //float h = joystick.GetHorizontal();
         //float v = joystick.GetVertical();
 
-        if (!isSystemControl) {
-            h = Input.GetAxisRaw("Horizontal");
-            v = Input.GetAxisRaw("Vertical");
-        }
+        h = Input.GetAxisRaw("Horizontal");
+        v = Input.GetAxisRaw("Vertical");
 
-        moveDir = new Vector2(h, v).normalized;
+        objectControl._moveDir = new Vector2(h, v).normalized;
     }
 
 }

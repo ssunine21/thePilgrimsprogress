@@ -2,45 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectControl : Character
-{
+public class ObjectControl : Character {
+
+    private bool isProductionStop = false;
+    private bool isMove = false;
+
     [HideInInspector]
     public List<ProductionType> productionTypeList;
     [HideInInspector]
     public ObjectControl preObject;
-
-    private bool isMove = false;
+    [HideInInspector]
     public bool isDialogue = false;
-    public bool isProductionStop = false;
+
+    public Vector2 _moveDir {
+        get => moveDir;
+        set {
+            
+            moveDir = value;
+        }
+    }
 
     private void Start() {
         tr = this.transform;
+        if (this.GetComponent<Animator>() != null) animator = this.GetComponent<Animator>();
     }
 
     public void ProductionStart() {
-
-        if (this.GetComponent<PlayerControl>() != null) this.GetComponent<PlayerControl>().enabled = false;
-        else if (this.GetComponent<FollowCam>() != null) this.GetComponent<FollowCam>().enabled = false;
+        if (this.GetComponent<FollowCam>() != null)
+            this.GetComponent<FollowCam>().enabled = false;
 
         StopAllCoroutines();
         StartCoroutine("ProductionControl");
     }
 
-    public void setDebug() {
-        Debug.Log(productionTypeList);
-    }
-
     private void FixedUpdate() {
-
-        if (isMove) {
-            Move();
-        }
+        Debug.Log(_moveDir);
+        Move();
     }
 
     IEnumerator ProductionControl() {
 
         while(preObject != null){
-            if (preObject.isProductionStop) preObject = null;
+            if (preObject.isProductionStop)
+                preObject = null;
 
             yield return null;
         }
@@ -56,8 +60,10 @@ public class ObjectControl : Character
                     moveDir = tempDir.normalized;
 
                     while (isMove) {
-                        if (Vector2.Distance(tr.position, production.pos) >= 0.05f) isMove = true;
-                        else isMove = false;
+                        if (Vector2.Distance(tr.position, production.pos) <= 0.05f) {
+                            isMove = false;
+                            moveDir = Vector3.zero;
+                        }
 
                         yield return null;
                     }
@@ -84,8 +90,7 @@ public class ObjectControl : Character
             }
         }
 
-        if (this.GetComponent<PlayerControl>() != null) this.GetComponent<PlayerControl>().enabled = true;
-        else if (this.GetComponent<FollowCam>() != null) this.GetComponent<FollowCam>().enabled = true;
+        if (this.GetComponent<FollowCam>() != null) this.GetComponent<FollowCam>().enabled = true;
 
         isProductionStop = true;
     }

@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-	private int PLAYER_MOVE_SPEED;
-
     public static DialogueManager init;
 
 	#region Singleton
@@ -40,8 +38,6 @@ public class DialogueManager : MonoBehaviour
 		count = 0;
 		text.text = "";
 		listSentences = new List<string>();
-
-		PLAYER_MOVE_SPEED = PlayerControl.init.moveSpeed;
 	}
 
 	public void ShowDialogue(List<string> sentences, QuestProperties currQuest) {
@@ -141,12 +137,10 @@ public class DialogueManager : MonoBehaviour
 	}
 
 	private void onSentencesEnter() {
-		PlayerControl.init.moveSpeed = 0;
 		currQuestProperties.onSentencesEnter();
 	}
 
 	private void onSentencesExit() {
-		PlayerControl.init.moveSpeed = PLAYER_MOVE_SPEED;
 		currQuestProperties.onSentenceExit();
 	}
 }

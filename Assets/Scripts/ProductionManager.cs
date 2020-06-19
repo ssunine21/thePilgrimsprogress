@@ -27,6 +27,7 @@ public class ProductionType {
 
 public class ProductionManager : MonoBehaviour
 {
+
     public ProductionType[] productionType;
     public bool isStart = false;
     private bool division = false;
@@ -46,7 +47,9 @@ public class ProductionManager : MonoBehaviour
                 if (prodiction.productionKey.Equals(ProductionKey.division)) division = true;
 
                 if (prodiction.productionKey.Equals(ProductionKey.gameObject)) {
-                    if (!division) prodiction.gameObject.GetComponent<ObjectControl>().preObject = tempObject;
+                    if (!division) {
+                        prodiction.gameObject.GetComponent<ObjectControl>().preObject = tempObject;
+                    }
                   
                     tempObject = prodiction.gameObject.GetComponent<ObjectControl>();
                     tempObject.productionTypeList = new List<ProductionType>();
@@ -55,7 +58,6 @@ public class ProductionManager : MonoBehaviour
 
                 } else {
                     tempObject.productionTypeList.Add(prodiction);
-                    tempObject.setDebug();
                 }
             }
         }

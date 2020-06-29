@@ -44,11 +44,11 @@ TagManager:
   - name: mapObject_back
     uniqueID: 3529301177
     locked: 0
-  - name: Player
-    uniqueID: 1214910561
-    locked: 0
-  - name: mapObject_forword
+  - name: mapObject
     uniqueID: 2177633775
+    locked: 0
+  - name: mapObject_front
+    uniqueID: 3827744905
     locked: 0
   - name: UI
     uniqueID: 1225162999

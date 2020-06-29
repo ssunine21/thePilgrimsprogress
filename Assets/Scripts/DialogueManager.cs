@@ -10,7 +10,6 @@ public class DialogueManager : MonoBehaviour
 	#region Singleton
 	private void Awake() {
         if(init == null) {
-            DontDestroyOnLoad(this.gameObject);
             init = this;
 		} else {
             Destroy(this.gameObject);
@@ -99,7 +98,10 @@ public class DialogueManager : MonoBehaviour
 		}
 
 		for(int i = 0; i < listSentences[count].Length; ++i) {
-			text.text += listSentences[count][i];
+			if ("\n".Equals(listSentences[count][i]))
+				text.text += System.Environment.NewLine;
+			else text.text += listSentences[count][i];
+
 			yield return new WaitForSeconds(0.01f);
 		}
 	}

@@ -63,10 +63,17 @@ public class ProductionManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.transform.CompareTag("Player")) {
+            isStart = true;
+        }
+    }
+
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position, Vector2.one);
         Vector2 tempPos = Vector2.zero;
+
 
         foreach (var production in productionType) {
             if (production.productionKey.Equals(ProductionKey.gameObject)) {

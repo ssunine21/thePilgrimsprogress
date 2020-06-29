@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
-{
+public class Character : MonoBehaviour {
+
+    private const int IsometricRangePerYUnit = 100;
+
     public int moveSpeed;
 
     protected Vector3 moveDir;
@@ -27,6 +29,5 @@ public class Character : MonoBehaviour
         tr.Translate(moveDir * moveSpeed * Time.deltaTime);
 
         if (animator) animator.SetFloat("Walk", value: Mathf.Abs(xAxis) + Mathf.Abs(yAxis));
-        else Debug.Log("noAnimation");
     }
 }

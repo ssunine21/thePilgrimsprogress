@@ -17,7 +17,6 @@ public class ObjectControl : Character {
     public Vector2 _moveDir {
         get => moveDir;
         set {
-            
             moveDir = value;
         }
     }
@@ -30,13 +29,14 @@ public class ObjectControl : Character {
     public void ProductionStart() {
         if (this.GetComponent<FollowCam>() != null)
             this.GetComponent<FollowCam>().enabled = false;
+        else if (this.GetComponent<PlayerControl>() != null)
+                this.GetComponent<PlayerControl>().enabled = false;
 
         StopAllCoroutines();
         StartCoroutine("ProductionControl");
     }
 
     private void FixedUpdate() {
-        Debug.Log(_moveDir);
         Move();
     }
 
@@ -60,7 +60,7 @@ public class ObjectControl : Character {
                     moveDir = tempDir.normalized;
 
                     while (isMove) {
-                        if (Vector2.Distance(tr.position, production.pos) <= 0.05f) {
+                        if (Vector2.Distance(tr.position, production.pos) <= 0.1f) {
                             isMove = false;
                             moveDir = Vector3.zero;
                         }
@@ -91,6 +91,7 @@ public class ObjectControl : Character {
         }
 
         if (this.GetComponent<FollowCam>() != null) this.GetComponent<FollowCam>().enabled = true;
+        if (this.GetComponent<PlayerControl>() != null) this.GetComponent<PlayerControl>().enabled = true;
 
         isProductionStop = true;
     }

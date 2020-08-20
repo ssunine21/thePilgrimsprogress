@@ -74,7 +74,8 @@ public class ProductionInspector : Editor {
     public override void OnInspectorGUI() {
         serializedObject.Update();
         productionType.DoLayoutList();
-        productionManager.isStart = EditorGUILayout.Toggle(new GUIContent("StartButton", "start"), productionManager.isStart);
+        //productionManager.isCheck = EditorGUILayout.Toggle(new GUIContent("isCheck", "start"), productionManager.isCheck);
+        productionManager.checkerImg = (GameObject)EditorGUILayout.ObjectField("CheckerImg", productionManager.checkerImg, typeof(GameObject), true);
         serializedObject.ApplyModifiedProperties();
     }
 

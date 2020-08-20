@@ -25,19 +25,20 @@ public class ProductionType {
     public Animation anim;
 }
 
+[RequireComponent(typeof(Collider2D))]
 public class ProductionManager : MonoBehaviour
 {
+    private const float gizmoDiameter = 0.7f;
 
     public ProductionType[] productionType;
-    public bool isStart = false;
+    public bool isCheck = false;
+    public bool isStarting = false;
+
+    public GameObject checkerImg = null;
     private bool division = false;
 
     private List<ObjectControl> tempObjects = new List<ObjectControl>();
-
-
-    //private int i = 0;
-    //private Vector2 finishPos;
-    //private Vector3 snap = Vector3.zero;
+    
 
     private void Start() {
         ObjectControl tempObject = null;
@@ -61,17 +62,31 @@ public class ProductionManager : MonoBehaviour
                 }
             }
         }
+        if (checkerImg != null) {
+            checkerImg.SetActive(false);
+            isCheck = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.transform.CompareTag("Player")) {
-            isStart = true;
+            if (isCheck)
+                checkerImg.SetActive(true);
+            else {
+                this.isStarting = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if (collision.transform.CompareTag("Player")) {
+            if (isCheck) checkerImg.SetActive(false);
         }
     }
 
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(transform.position, Vector2.one);
+        Gizmos.DrawSphere(transform.position, gizmoDiameter);
         Vector2 tempPos = Vector2.zero;
 
 
@@ -85,13 +100,12 @@ public class ProductionManager : MonoBehaviour
         }
     }
 
-
     private void FixedUpdate() {
-        if(isStart) {
+        if(this.isStarting) {
             foreach(var gameObject in tempObjects) {
                 gameObject.ProductionStart();
             }
-            isStart = false;
+            this.isStarting = false;
         }
         //if (isStart) {
         //    if (objects[0].productionValue.Length < i) return;
@@ -100,5 +114,13 @@ public class ProductionManager : MonoBehaviour
         //        objects[0].gameObject.transform.localPosition = Vector3.MoveTowards(objects[0].gameObject.transform.position, objects[0].productionValue[i + 1].pos, 8 * Time.deltaTime);
         //    else ++i;
         //}
+    }
+
+    public void startProduction() {
+        if (isCheck) {
+            if (checkerImg.activeSelf == true) isStarting = true;
+        } else {
+            isStarting = true;
+        }
     }
 }

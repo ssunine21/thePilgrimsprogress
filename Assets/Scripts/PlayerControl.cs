@@ -30,6 +30,7 @@ public class PlayerControl : MonoBehaviour {
 
     private void Update() {
         HandleInput();
+
     }
 
     public void setDirect(Vector2 direct) {
@@ -51,4 +52,17 @@ public class PlayerControl : MonoBehaviour {
         objectControl._moveDir = new Vector2(h, v).normalized;
     }
 
+    private void GetKeyDown() {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision) {
+        if (collision.CompareTag("NPC")) {
+            if(Input.GetKeyDown(KeyCode.Space) && collision.GetComponent<ProductionManager>().isCheck) {
+                collision.GetComponent<ProductionManager>().startProduction();
+            }
+        }
+    }
 }

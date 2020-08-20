@@ -25,7 +25,6 @@ public class QuestManager : MonoBehaviour
 	private void Start() {
 		questData = CSVReader.Read("quest");
 		dialogueManager = FindObjectOfType<DialogueManager>();
-
 	}
 
 	/// <summary>

@@ -30,4 +30,6 @@ public class Character : MonoBehaviour {
 
         if (animator) animator.SetFloat("Walk", value: Mathf.Abs(xAxis) + Mathf.Abs(yAxis));
     }
+
+
 }

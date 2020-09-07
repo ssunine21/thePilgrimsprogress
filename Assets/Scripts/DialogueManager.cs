@@ -39,32 +39,33 @@ public class DialogueManager : MonoBehaviour
 		listSentences = new List<string>();
 	}
 
-	public void ShowDialogue(List<string> sentences, QuestProperties currQuest) {
-		if (currQuest) currQuestProperties = currQuest;
+	private void setDialog(List<string> sentences) {
 
-		onSentencesEnter();
-
-		talking = true;
-
-		for(int i = 0; i < sentences.Count; ++i) {
+		for (int i = 1; i < sentences.Count; ++i) {
 			listSentences.Add(sentences[i]);
 		}
+
 		//대화창 이미지
 		animDialogueWindow.SetBool("appear", true);
 		StartCoroutine("StartDialogueCoroutine");
 	}
 
+	public void ShowDialogue(List<string> sentences, QuestProperties currQuest) {
+		if (currQuest)
+			this.currQuestProperties = currQuest;
+
+		onSentencesEnter();
+		talking = true;
+		setDialog(sentences);
+
+	}
+
 	public void ShowDialogue(List<string> sentences, ObjectControl currProductionObject) {
-		if (currProductionObject) this.currProductionObject = currProductionObject;
+		if (currProductionObject)
+			this.currProductionObject = currProductionObject;
 
 		productionTalking = true;
-
-		for (int i = 0; i < sentences.Count; ++i) {
-			listSentences.Add(sentences[i]);
-		}
-		//대화창 이미지
-		animDialogueWindow.SetBool("appear", true);
-		StartCoroutine("StartDialogueCoroutine");
+		setDialog(sentences);
 	}
 
 	public void ExitDialogue() {

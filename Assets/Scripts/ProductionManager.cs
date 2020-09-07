@@ -26,6 +26,7 @@ public class ProductionType {
 }
 
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(QuestProperties))]
 public class ProductionManager : MonoBehaviour
 {
     private const float gizmoDiameter = 0.7f;
@@ -41,19 +42,27 @@ public class ProductionManager : MonoBehaviour
     
 
     private void Start() {
+        if (checkerImg != null) {
+            checkerImg.SetActive(false);
+            isCheck = true;
+        }
+    }
+
+    private void setProduction() {
         ObjectControl tempObject = null;
 
-        if(productionType.Length > 0) {
-            foreach(var prodiction in productionType) {
+        if (productionType.Length > 0) {
+            foreach (var prodiction in productionType) {
                 if (prodiction.productionKey.Equals(ProductionKey.division)) division = true;
 
                 if (prodiction.productionKey.Equals(ProductionKey.gameObject)) {
                     if (!division) {
                         prodiction.gameObject.GetComponent<ObjectControl>().preObject = tempObject;
                     }
-                  
+
                     tempObject = prodiction.gameObject.GetComponent<ObjectControl>();
                     tempObject.productionTypeList = new List<ProductionType>();
+                    tempObject.productionTypeList.Add(prodiction);
                     tempObjects.Add(tempObject);
                     division = false;
 
@@ -61,10 +70,6 @@ public class ProductionManager : MonoBehaviour
                     tempObject.productionTypeList.Add(prodiction);
                 }
             }
-        }
-        if (checkerImg != null) {
-            checkerImg.SetActive(false);
-            isCheck = true;
         }
     }
 
@@ -102,6 +107,9 @@ public class ProductionManager : MonoBehaviour
 
     private void FixedUpdate() {
         if(this.isStarting) {
+
+            setProduction();
+
             foreach(var gameObject in tempObjects) {
                 gameObject.ProductionStart();
             }

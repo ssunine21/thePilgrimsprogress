@@ -6,6 +6,7 @@ public class ObjectControl : Character {
 
     private bool isProductionStop = false;
     private bool isMove = false;
+    private int initMoveSpeed = 0;
 
     [HideInInspector]
     public List<ProductionType> productionTypeList;
@@ -24,14 +25,10 @@ public class ObjectControl : Character {
     private void Start() {
         tr = this.transform;
         if (this.GetComponent<Animator>() != null) animator = this.GetComponent<Animator>();
+        initMoveSpeed = moveSpeed;
     }
 
     public void ProductionStart() {
-        if (this.GetComponent<FollowCam>() != null)
-            this.GetComponent<FollowCam>().enabled = false;
-        else if (this.GetComponent<PlayerControl>() != null)
-                this.GetComponent<PlayerControl>().enabled = false;
-
         StopAllCoroutines();
         StartCoroutine("ProductionControl");
     }
@@ -42,16 +39,23 @@ public class ObjectControl : Character {
 
     IEnumerator ProductionControl() {
 
-        while(preObject != null){
-            if (preObject.isProductionStop)
-                preObject = null;
+        if (preObject != null) {
+            while (!preObject.isProductionStop) {
+                yield return null;
+            }
 
-            yield return null;
+            preObject.isProductionStop = false;
         }
+
+        
 
         foreach(var production in productionTypeList) {
             switch (production.productionKey) {
                 case ProductionKey.gameObject:
+                    if (this.GetComponent<FollowCam>() != null)
+                        this.GetComponent<FollowCam>().enabled = false;
+                    else if (this.GetComponent<PlayerControl>() != null)
+                        this.GetComponent<PlayerControl>().enabled = false;
                     break;
 
                 case ProductionKey.position:
@@ -94,5 +98,6 @@ public class ObjectControl : Character {
         if (this.GetComponent<PlayerControl>() != null) this.GetComponent<PlayerControl>().enabled = true;
 
         isProductionStop = true;
+        moveSpeed = initMoveSpeed;
     }
 }

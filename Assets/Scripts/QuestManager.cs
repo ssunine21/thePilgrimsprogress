@@ -59,6 +59,7 @@ public class QuestManager : MonoBehaviour
 	public void InsertQuest(string questNum, ObjectControl currProductionObject) {
 		for (var i = 0; i < questData.Count; ++i) {
 			if (questData[i]["no"].ToString().Equals(questNum)) {
+				sentences.Add((string)questData[i]["release"]);
 
 				while (i < questData.Count) {
 					if (!questData[i]["no"].ToString().Equals(questNum) && !questData[i]["no"].ToString().Equals("")) {

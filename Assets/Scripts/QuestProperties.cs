@@ -40,21 +40,19 @@ public class QuestProperties : MonoBehaviour
 	public void onSentenceExit() {
 		switch (properties) {
 			case PROPERTIES.BLOCK:
-				StartCoroutine("Reflection");
 				break;
 			case PROPERTIES.NPC:
-				Debug.Log("position is " + properties.ToString());
 				break;
 			default:
 				break;
 		}
 	}
-    IEnumerator Reflection() {
-		playerControl.isSystemControl = true;
-		playerControl.setDirect(playerDirection * -1);
+ //   IEnumerator Reflection() {
+	//	playerControl.isSystemControl = true;
+	//	playerControl.setDirect(playerDirection * -1);
 
-		yield return new WaitForSeconds(REFLECTION_TIME);
+	//	yield return new WaitForSeconds(REFLECTION_TIME);
 
-		playerControl.isSystemControl = false;
-	}
+	//	playerControl.isSystemControl = false;
+	//}
 }

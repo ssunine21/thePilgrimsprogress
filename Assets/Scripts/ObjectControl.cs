@@ -75,7 +75,11 @@ public class ObjectControl : Character {
 
                 case ProductionKey.scriptNum:
                     isDialogue = true;
-                    QuestManager.init.InsertQuest(production.scriptNum, this);
+                    try {
+                        QuestManager.init.InsertQuest(production.scriptNum, this);
+                    } catch(KeyNotFoundException e) {
+                        Debug.Log(e.Message + "해당 퀘스트의 script number 불일치");
+                    }
                     while (isDialogue) {
                         yield return null;
                     }

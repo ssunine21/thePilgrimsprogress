@@ -25,11 +25,19 @@ public class ProductionType {
     public Animation anim;
 }
 
+
+public enum PROPERTIES {
+    BLOCK = 0,
+    NPC = 1
+}
+
 [RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(QuestProperties))]
 public class ProductionManager : MonoBehaviour
 {
     private const float gizmoDiameter = 0.7f;
+
+    public PROPERTIES properties;
+    public string questNumber = "";
 
     public ProductionType[] productionType;
     public bool isCheck = false;

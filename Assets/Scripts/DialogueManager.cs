@@ -20,7 +20,6 @@ public class DialogueManager : MonoBehaviour
 	public Text text;
 	public SpriteRenderer dialogueRenderer;
 
-	private QuestProperties currQuestProperties;
 	private ObjectControl currProductionObject;
 
 	private List<string> listSentences;
@@ -50,16 +49,6 @@ public class DialogueManager : MonoBehaviour
 		StartCoroutine("StartDialogueCoroutine");
 	}
 
-	public void ShowDialogue(List<string> sentences, QuestProperties currQuest) {
-		if (currQuest)
-			this.currQuestProperties = currQuest;
-
-		onSentencesEnter();
-		talking = true;
-		setDialog(sentences);
-
-	}
-
 	public void ShowDialogue(List<string> sentences, ObjectControl currProductionObject) {
 		if (currProductionObject)
 			this.currProductionObject = currProductionObject;
@@ -69,7 +58,6 @@ public class DialogueManager : MonoBehaviour
 	}
 
 	public void ExitDialogue() {
-		onSentencesExit();
 
 		text.text = "";
 		count = 0;
@@ -137,13 +125,5 @@ public class DialogueManager : MonoBehaviour
 				}
 			}
 		}
-	}
-
-	private void onSentencesEnter() {
-		currQuestProperties.onSentencesEnter();
-	}
-
-	private void onSentencesExit() {
-		currQuestProperties.onSentenceExit();
 	}
 }

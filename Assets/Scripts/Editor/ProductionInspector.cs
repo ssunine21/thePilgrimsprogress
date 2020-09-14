@@ -73,6 +73,10 @@ public class ProductionInspector : Editor {
     // 유니티가 인스펙터를 GUI로 그려주는함수
     public override void OnInspectorGUI() {
         serializedObject.Update();
+
+        productionManager.properties = (PROPERTIES)EditorGUILayout.EnumPopup("NPC Type", productionManager.properties);
+        productionManager.questNumber = (string)EditorGUILayout.TextField("Quest Number", productionManager.questNumber);
+        EditorGUILayout.Space();
         productionType.DoLayoutList();
         //productionManager.isCheck = EditorGUILayout.Toggle(new GUIContent("isCheck", "start"), productionManager.isCheck);
         productionManager.checkerImg = (GameObject)EditorGUILayout.ObjectField("CheckerImg", productionManager.checkerImg, typeof(GameObject), true);

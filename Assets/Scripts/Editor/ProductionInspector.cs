@@ -59,6 +59,11 @@ public class ProductionInspector : Editor {
                         EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
                             element.FindPropertyRelative("delayTime"), GUIContent.none);
                         break;
+
+                    case ProductionKey.nextQuest:
+                        EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
+                            element.FindPropertyRelative("nextQuestNumber"), GUIContent.none);
+                        break;
                 }
             };
 

@@ -95,6 +95,10 @@ public class ObjectControl : Character {
 
                 case ProductionKey.anim:
                     break;
+
+                case ProductionKey.nextQuest:
+                    QuestManager.init.nextQuest(production.nextQuestNumber);
+                    break;
             }
         }
 

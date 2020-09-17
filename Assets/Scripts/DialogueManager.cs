@@ -18,12 +18,8 @@ public class DialogueManager : MonoBehaviour
 	#endregion Singleton
 
 	public Text text;
-	public SpriteRenderer dialogueRenderer;
-
 	private ObjectControl currProductionObject;
-
 	private List<string> listSentences;
-	public Sprite listDialogueWindows;
 
 	private int count; //대화 진행 카운드
 
@@ -40,7 +36,7 @@ public class DialogueManager : MonoBehaviour
 
 	private void setDialog(List<string> sentences) {
 
-		for (int i = 1; i < sentences.Count; ++i) {
+		for (int i = 0; i < sentences.Count; ++i) {
 			listSentences.Add(sentences[i]);
 		}
 
@@ -79,12 +75,6 @@ public class DialogueManager : MonoBehaviour
     }
 
 	IEnumerator StartDialogueCoroutine() {
-
-		if (count > 0) {
-
-		} else {
-			dialogueRenderer.GetComponent<SpriteRenderer>().sprite = listDialogueWindows;
-		}
 
 		for(int i = 0; i < listSentences[count].Length; ++i) {
 			if ("\n".Equals(listSentences[count][i]))

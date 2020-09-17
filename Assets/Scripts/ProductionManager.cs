@@ -11,7 +11,8 @@ public enum ProductionKey {
     delayTime,
     anim,
     scriptNum,
-    division
+    division,
+    nextQuest
 }
 [System.Serializable]
 public class ProductionType {
@@ -23,6 +24,7 @@ public class ProductionType {
     public int moveSpeed;
     public float delayTime;
     public Animation anim;
+    public string nextQuestNumber;
 }
 
 

@@ -89,6 +89,7 @@ public class ProductionManager : MonoBehaviour
                 checkerImg.SetActive(true);
             else {
                 this.isStarting = true;
+                PlayerControl.init.systemControl(true);
             }
         }
     }
@@ -99,11 +100,13 @@ public class ProductionManager : MonoBehaviour
         }
     }
 
-    void OnDrawGizmosSelected() {
+    private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, gizmoDiameter);
-        Vector2 tempPos = Vector2.zero;
+    }
 
+    void OnDrawGizmosSelected() {
+        Vector2 tempPos = Vector2.zero;
 
         foreach (var production in productionType) {
             if (production.productionKey.Equals(ProductionKey.gameObject)) {

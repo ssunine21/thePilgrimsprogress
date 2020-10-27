@@ -10,6 +10,9 @@ public class PlayerControl : MonoBehaviour {
                 _init = new PlayerControl();
             return _init;
         }
+        set { if (_init == null)
+                _init = value;
+        }
     }
     private bool _isSystemControl = false;
     public bool isSystemControl {
@@ -24,13 +27,20 @@ public class PlayerControl : MonoBehaviour {
     private float h;
     private float v;
 
+    private void Awake() {
+        if (init == null)
+            init = this;
+
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     private void Start() {
         objectControl = this.GetComponent<ObjectControl>();
     }
 
     private void Update() {
-        HandleInput();
-
+        if(!isSystemControl)
+            HandleInput();
     }
 
     public void setDirect(Vector2 direct) {
@@ -60,9 +70,18 @@ public class PlayerControl : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.CompareTag("NPC")) {
-            if(Input.GetKeyDown(KeyCode.Space) && collision.GetComponent<ProductionManager>().isCheck) {
+            if (Input.GetKeyDown(KeyCode.Space) && collision.GetComponent<ProductionManager>().isCheck) {
                 collision.GetComponent<ProductionManager>().startProduction();
             }
+        }
+    }
+
+    public void systemControl(bool isControl) {
+        if (isControl) {
+            isSystemControl = true;
+            objectControl._moveDir = Vector2.zero;
+        } else {
+            isSystemControl = false;
         }
     }
 }

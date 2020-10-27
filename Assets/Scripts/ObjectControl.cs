@@ -54,8 +54,6 @@ public class ObjectControl : Character {
                 case ProductionKey.gameObject:
                     if (this.GetComponent<FollowCam>() != null)
                         this.GetComponent<FollowCam>().enabled = false;
-                    else if (this.GetComponent<PlayerControl>() != null)
-                        this.GetComponent<PlayerControl>().enabled = false;
                     break;
 
                 case ProductionKey.position:
@@ -77,8 +75,11 @@ public class ObjectControl : Character {
                     isDialogue = true;
                     try {
                         QuestManager.init.InsertQuest(production.scriptNum, this);
-                    } catch(KeyNotFoundException e) {
-                        Debug.Log(e.Message + "해당 퀘스트의 script number 불일치");
+                    } catch(System.NullReferenceException e) {
+                        Debug.LogError(e.Message + "QuestManagert script is null, check Canvas Object");
+                    }
+                    catch(KeyNotFoundException e) {
+                        Debug.LogError(e.Message + "해당 퀘스트의 script number 불일치");
                     }
                     while (isDialogue) {
                         yield return null;
@@ -98,12 +99,13 @@ public class ObjectControl : Character {
 
                 case ProductionKey.nextQuest:
                     QuestManager.init.nextQuest(production.nextQuestNumber);
+                    if (PlayerControl.init != null)
+                        PlayerControl.init.systemControl(false);
                     break;
             }
         }
 
         if (this.GetComponent<FollowCam>() != null) this.GetComponent<FollowCam>().enabled = true;
-        if (this.GetComponent<PlayerControl>() != null) this.GetComponent<PlayerControl>().enabled = true;
 
         isProductionStop = true;
         moveSpeed = initMoveSpeed;

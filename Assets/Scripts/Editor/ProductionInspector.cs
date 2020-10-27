@@ -90,6 +90,7 @@ public class ProductionInspector : Editor {
 
     private void OnSceneGUI() {
         Tools.current = Tool.None;
+        
         var vertexes = productionManager.productionType;
         //List<Vector3> line = new List<Vector3>;
         foreach(var vertex in vertexes) {

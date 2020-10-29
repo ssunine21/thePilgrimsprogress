@@ -27,7 +27,6 @@ public class ProductionType {
     public string nextQuestNumber;
 }
 
-
 public enum PROPERTIES {
     BLOCK = 0,
     NPC = 1
@@ -38,7 +37,8 @@ public class ProductionManager : MonoBehaviour
 {
     private const float gizmoDiameter = 0.7f;
 
-    public PROPERTIES properties;
+    [SerializeField]
+    public List<GameObject> npcList;
     public string questNumber = "";
 
     public ProductionType[] productionType;

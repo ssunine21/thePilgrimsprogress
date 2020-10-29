@@ -130,7 +130,7 @@ ScriptedImporter:
     tessellationDetail: 0
     parentGroupIndex: -1
     uvTransform: {x: 36, y: 191}
-  - name: mouth_closde
+  - name: mouth_closed
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0

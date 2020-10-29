@@ -57,9 +57,6 @@ public class QuestManager : MonoBehaviour {
 	public void InsertQuest(string questNum, ObjectControl currProductionObject) {
 		for (var i = 0; i < questDatas.Count; ++i) {
 			if (questDatas[i][scriptNum].ToString().Equals(questNum)) {
-				//Write code to get the quest title and content
-
-
 				//To call SendSentences when different the questNum.
 				while (i < questDatas.Count) {
 					if (!questDatas[i][scriptNum].ToString().Equals(questNum) && !questDatas[i][scriptNum].ToString().Equals("")) {

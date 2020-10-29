@@ -8,7 +8,9 @@ using UnityEditorInternal;
 public class ProductionInspector : Editor {
 
     private ReorderableList productionType;
+    private ReorderableList npcList;
     private SerializedProperty prop;
+    private SerializedProperty npcProp;
     private ProductionManager productionManager;
 
     private float keyWidth;
@@ -16,56 +18,67 @@ public class ProductionInspector : Editor {
     private float x, y;
 
     private void OnEnable() {
+        npcProp = serializedObject.FindProperty("npcList");
         prop = serializedObject.FindProperty("productionType");
+
         productionType = new ReorderableList(serializedObject, prop, true, true, true, true);
+        npcList = new ReorderableList(serializedObject, npcProp, true, true, true, true);
 
         productionManager = (ProductionManager)target;
 
-        productionType.drawElementCallback =
-            (Rect rect, int index, bool isActive, bool isFocused) => {
-                var element = prop.GetArrayElementAtIndex(index);
-                rect.y += 2;
+        npcList.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) => {
+            rect.height = EditorGUIUtility.singleLineHeight;
 
-                x = rect.x + 10f;
-                y = rect.y;
-                keyWidth = rect.width * 0.4f;
-                valueWidth = rect.width * 0.55f;
+            productionManager.npcList[index] = (GameObject)EditorGUI.ObjectField(rect, GUIContent.none, productionManager.npcList[index], typeof(GameObject), true);
+        };
+        npcList.drawHeaderCallback = (rect) => {
+            EditorGUI.LabelField(rect, npcProp.displayName);
+        };
 
-                productionManager.productionType[index].productionKey = (ProductionKey)EditorGUI.EnumPopup(new Rect(rect.x, rect.y, keyWidth, EditorGUIUtility.singleLineHeight), GUIContent.none, productionManager.productionType[index].productionKey);
+        productionType.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) => {
+            var element = prop.GetArrayElementAtIndex(index);
+            rect.y += 2;
 
+            x = rect.x + 10f;
+            y = rect.y;
+            keyWidth = rect.width * 0.4f;
+            valueWidth = rect.width * 0.55f;
 
-                switch (productionManager.productionType[index].productionKey) {
-                    case ProductionKey.gameObject:
-                        EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
-                            element.FindPropertyRelative("gameObject"), GUIContent.none);
-                        break;
+            productionManager.productionType[index].productionKey =
+            (ProductionKey)EditorGUI.EnumPopup(new Rect(rect.x, rect.y, keyWidth, EditorGUIUtility.singleLineHeight), GUIContent.none, productionManager.productionType[index].productionKey);
 
-                    case ProductionKey.position:
-                        EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
-                            element.FindPropertyRelative("pos"), GUIContent.none);
-                        break;
+            switch (productionManager.productionType[index].productionKey) {
+                case ProductionKey.gameObject:
+                    EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
+                        element.FindPropertyRelative("gameObject"), GUIContent.none);
+                    break;
 
-                    case ProductionKey.scriptNum:
-                        EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
-                            element.FindPropertyRelative("scriptNum"), GUIContent.none);
-                        break;
+                case ProductionKey.position:
+                    EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
+                        element.FindPropertyRelative("pos"), GUIContent.none);
+                    break;
 
-                    case ProductionKey.moveSpeed:
-                        EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
-                            element.FindPropertyRelative("moveSpeed"), GUIContent.none);
-                        break;
+                case ProductionKey.scriptNum:
+                    EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
+                        element.FindPropertyRelative("scriptNum"), GUIContent.none);
+                    break;
 
-                    case ProductionKey.delayTime:
-                        EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
-                            element.FindPropertyRelative("delayTime"), GUIContent.none);
-                        break;
+                case ProductionKey.moveSpeed:
+                    EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
+                        element.FindPropertyRelative("moveSpeed"), GUIContent.none);
+                    break;
 
-                    case ProductionKey.nextQuest:
-                        EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
-                            element.FindPropertyRelative("nextQuestNumber"), GUIContent.none);
-                        break;
-                }
-            };
+                case ProductionKey.delayTime:
+                    EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
+                        element.FindPropertyRelative("delayTime"), GUIContent.none);
+                    break;
+
+                case ProductionKey.nextQuest:
+                    EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
+                        element.FindPropertyRelative("nextQuestNumber"), GUIContent.none);
+                    break;
+            }
+        };
 
         productionType.drawHeaderCallback = (rect) => {
             EditorGUI.LabelField(rect, prop.displayName);
@@ -79,8 +92,11 @@ public class ProductionInspector : Editor {
     public override void OnInspectorGUI() {
         serializedObject.Update();
 
-        productionManager.properties = (PROPERTIES)EditorGUILayout.EnumPopup("NPC Type", productionManager.properties);
+
         productionManager.questNumber = (string)EditorGUILayout.TextField("Quest Number", productionManager.questNumber);
+
+        EditorGUILayout.Space();
+        npcList.DoLayoutList();
         EditorGUILayout.Space();
         productionType.DoLayoutList();
         //productionManager.isCheck = EditorGUILayout.Toggle(new GUIContent("isCheck", "start"), productionManager.isCheck);

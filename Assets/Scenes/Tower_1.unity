@@ -897,7 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d489fbef0996aa45ba807524a01cf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  properties: 0
+  npcList: []
   questNumber: 101
   productionType:
   - productionKey: 0
@@ -911,7 +911,7 @@ MonoBehaviour:
   - productionKey: 2
     gameObject: {fileID: 519796177}
     pos: {x: 3.6861105, y: 18.532019}
-    scriptNum: 101d
+    scriptNum: 
     moveSpeed: 2
     delayTime: 1
     anim: {fileID: 0}
@@ -927,7 +927,7 @@ MonoBehaviour:
   - productionKey: 5
     gameObject: {fileID: 0}
     pos: {x: 3.406114, y: 18.145391}
-    scriptNum: 101a
+    scriptNum: 
     moveSpeed: 0
     delayTime: 0
     anim: {fileID: 0}
@@ -935,7 +935,7 @@ MonoBehaviour:
   - productionKey: 1
     gameObject: {fileID: 519796177}
     pos: {x: 1.140686, y: 19.046114}
-    scriptNum: 101c
+    scriptNum: 
     moveSpeed: 7
     delayTime: 1
     anim: {fileID: 0}
@@ -943,7 +943,7 @@ MonoBehaviour:
   - productionKey: 3
     gameObject: {fileID: 519796177}
     pos: {x: 3.795845, y: 18.477152}
-    scriptNum: 101c
+    scriptNum: 
     moveSpeed: 7
     delayTime: 1
     anim: {fileID: 0}
@@ -951,7 +951,7 @@ MonoBehaviour:
   - productionKey: 1
     gameObject: {fileID: 519796177}
     pos: {x: 2.9107914, y: 18.982897}
-    scriptNum: 101c
+    scriptNum: 
     moveSpeed: 7
     delayTime: 1
     anim: {fileID: 0}
@@ -959,7 +959,7 @@ MonoBehaviour:
   - productionKey: 3
     gameObject: {fileID: 519796177}
     pos: {x: 3.6861105, y: 18.532019}
-    scriptNum: 101d
+    scriptNum: 
     moveSpeed: 7
     delayTime: 0.5
     anim: {fileID: 0}
@@ -967,7 +967,7 @@ MonoBehaviour:
   - productionKey: 5
     gameObject: {fileID: 0}
     pos: {x: 2.3278823, y: 17.896566}
-    scriptNum: 101b
+    scriptNum: 
     moveSpeed: 0
     delayTime: 1
     anim: {fileID: 0}
@@ -975,7 +975,7 @@ MonoBehaviour:
   - productionKey: 1
     gameObject: {fileID: 519796177}
     pos: {x: 3.6861105, y: 18.532019}
-    scriptNum: 101c
+    scriptNum: 
     moveSpeed: 7
     delayTime: 1
     anim: {fileID: 0}
@@ -983,7 +983,7 @@ MonoBehaviour:
   - productionKey: 5
     gameObject: {fileID: 519796177}
     pos: {x: 3.795845, y: 18.477152}
-    scriptNum: 101c
+    scriptNum: 
     moveSpeed: 7
     delayTime: 1
     anim: {fileID: 0}
@@ -991,7 +991,7 @@ MonoBehaviour:
   - productionKey: 7
     gameObject: {fileID: 519796177}
     pos: {x: 3.795845, y: 18.477152}
-    scriptNum: 101c
+    scriptNum: 
     moveSpeed: 7
     delayTime: 1
     anim: {fileID: 0}
@@ -1615,7 +1615,7 @@ PrefabInstance:
     - target: {fileID: 2864755293481139037, guid: 25f3b1d642ae96c4ca0002e19874023d,
         type: 3}
       propertyPath: m_Name
-      value: NPC_falseevangelist
+      value: N001
       objectReference: {fileID: 0}
     - target: {fileID: 2864755293481139037, guid: 25f3b1d642ae96c4ca0002e19874023d,
         type: 3}
@@ -18892,13 +18892,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d489fbef0996aa45ba807524a01cf5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  properties: 0
+  npcList:
+  - {fileID: 322355892}
+  - {fileID: 1976290738}
   questNumber: 102
   productionType:
   - productionKey: 0
     gameObject: {fileID: 519796177}
     pos: {x: 3.795845, y: 18.477152}
-    scriptNum: 101c
+    scriptNum: 
     moveSpeed: 7
     delayTime: 1
     anim: {fileID: 0}
@@ -18906,7 +18908,7 @@ MonoBehaviour:
   - productionKey: 2
     gameObject: {fileID: 519796177}
     pos: {x: 3.795845, y: 18.477152}
-    scriptNum: 101c
+    scriptNum: 
     moveSpeed: 10
     delayTime: 1
     anim: {fileID: 0}
@@ -18914,7 +18916,7 @@ MonoBehaviour:
   - productionKey: 1
     gameObject: {fileID: 519796177}
     pos: {x: -9, y: 12}
-    scriptNum: 101c
+    scriptNum: 
     moveSpeed: 7
     delayTime: 1
     anim: {fileID: 0}
@@ -18922,15 +18924,47 @@ MonoBehaviour:
   - productionKey: 5
     gameObject: {fileID: 519796177}
     pos: {x: 3.795845, y: 18.477152}
-    scriptNum: 102a
+    scriptNum: 
     moveSpeed: 7
     delayTime: 1
     anim: {fileID: 0}
-    nextQuestNumber: 102
+    nextQuestNumber: 103
+  - productionKey: 5
+    gameObject: {fileID: 519796177}
+    pos: {x: 3.795845, y: 18.477152}
+    scriptNum: 
+    moveSpeed: 7
+    delayTime: 1
+    anim: {fileID: 0}
+    nextQuestNumber: 103
+  - productionKey: 5
+    gameObject: {fileID: 519796177}
+    pos: {x: 3.795845, y: 18.477152}
+    scriptNum: 
+    moveSpeed: 7
+    delayTime: 1
+    anim: {fileID: 0}
+    nextQuestNumber: 103
+  - productionKey: 5
+    gameObject: {fileID: 519796177}
+    pos: {x: 3.795845, y: 18.477152}
+    scriptNum: 
+    moveSpeed: 7
+    delayTime: 1
+    anim: {fileID: 0}
+    nextQuestNumber: 103
   - productionKey: 7
     gameObject: {fileID: 519796177}
     pos: {x: 3.795845, y: 18.477152}
-    scriptNum: 101c
+    scriptNum: 
+    moveSpeed: 7
+    delayTime: 1
+    anim: {fileID: 0}
+    nextQuestNumber: 103
+  - productionKey: 1
+    gameObject: {fileID: 519796177}
+    pos: {x: 3.795845, y: 18.477152}
+    scriptNum: 
     moveSpeed: 7
     delayTime: 1
     anim: {fileID: 0}
@@ -27235,7 +27269,7 @@ PrefabInstance:
     - target: {fileID: 7067120564351048460, guid: b230810a24522fe4fafcc3f83bf16d88,
         type: 3}
       propertyPath: m_Name
-      value: NPC_stubborn
+      value: N002
       objectReference: {fileID: 0}
     - target: {fileID: 7067120564351048460, guid: b230810a24522fe4fafcc3f83bf16d88,
         type: 3}

@@ -5,20 +5,29 @@ using UnityEngine;
 public class Character : MonoBehaviour {
 
     private const int IsometricRangePerYUnit = 100;
-    private readonly int walkAnimationId = Animator.StringToHash("Walk");
-    private readonly int talkAnimationId = Animator.StringToHash("Talk");
+    private readonly int walkAnimId = Animator.StringToHash("Walk");
+    private readonly int talkAnimId = Animator.StringToHash("Talk");
 
     public int moveSpeed;
 
-    protected Vector3 moveDir;
+    protected Vector3 _moveDir;
+    public Vector3 moveDir {
+        get => _moveDir;
+        set => _moveDir = value;
+    }
 
-    protected Transform tr;
+    protected Transform _tr;
+    public Transform tr {
+        get => _tr;
+        set => _tr = value;
+    }
+
     protected Animator animator;
 
     protected void Move() {
 
-        float xAxis = moveDir.x;
-        float yAxis = moveDir.y;
+        float xAxis = _moveDir.x;
+        float yAxis = _moveDir.y;
 
         Vector3 characterDirection = tr.localScale;
 
@@ -28,15 +37,15 @@ public class Character : MonoBehaviour {
             characterDirection.x = 1;
         }
         tr.localScale = characterDirection;
-        tr.Translate(moveDir * moveSpeed * Time.deltaTime);
+        tr.Translate(_moveDir * moveSpeed * Time.deltaTime);
 
         if (animator)
-            animator.SetFloat(walkAnimationId, value: Mathf.Abs(xAxis) + Mathf.Abs(yAxis));
+            animator.SetFloat(walkAnimId, value: Mathf.Abs(xAxis) + Mathf.Abs(yAxis));
     }
 
     protected void playTalkAnimation() {
         if (animator)
-            animator.SetTrigger(talkAnimationId);
+            animator.SetTrigger(talkAnimId);
     }
 
 }

@@ -17,8 +17,22 @@ public class DialogueManager : MonoBehaviour
 	}
 	#endregion Singleton
 
-	public Text text;
-	private ObjectControl currProductionObject;
+	private readonly int appearAnimId = Animator.StringToHash("appear");
+	private readonly int dis_appearAnimId = Animator.StringToHash("dis_appear");
+
+	public Text dialogText;
+	public Text _nameTag;
+	public string nameTag {
+		set {
+			if (value.Equals("나레이션"))
+				_nameTag.rectTransform.parent.gameObject.SetActive(false);
+			else {
+				_nameTag.rectTransform.parent.gameObject.SetActive(true);
+				_nameTag.text = value;
+			}
+		}
+	}
+
 	private List<string> listSentences;
 
 	private int count; //대화 진행 카운드
@@ -30,7 +44,7 @@ public class DialogueManager : MonoBehaviour
 
 	private void Start() {
 		count = 0;
-		text.text = "";
+		dialogText.text = "";
 		listSentences = new List<string>();
 	}
 
@@ -41,36 +55,34 @@ public class DialogueManager : MonoBehaviour
 		}
 
 		//대화창 이미지
-		animDialogueWindow.SetBool("appear", true);
+		animDialogueWindow.SetBool(appearAnimId, true);
 		StartCoroutine("StartDialogueCoroutine");
 	}
 
-	public void ShowDialogue(List<string> sentences, ObjectControl currProductionObject) {
-		if (currProductionObject)
-			this.currProductionObject = currProductionObject;
-
+	public void ShowDialogue(List<string> sentences, string name) {
 		productionTalking = true;
+		nameTag = name;
+
 		setDialog(sentences);
 	}
 
 	public void ExitDialogue() {
 
-		text.text = "";
+		dialogText.text = "";
 		count = 0;
 		listSentences.Clear();
 
-		animDialogueWindow.SetBool("appear", false);
+		animDialogueWindow.SetBool(appearAnimId, false);
 		talking = false;
 	}
 
 	public void ExitProductiondialogue() {
-		this.currProductionObject.isDialogue = false;
 
-		text.text = "";
+		dialogText.text = "";
 		count = 0;
 		listSentences.Clear();
 
-		animDialogueWindow.SetBool("appear", false);
+		animDialogueWindow.SetBool(appearAnimId, false);
 		productionTalking = false;
     }
 
@@ -78,8 +90,8 @@ public class DialogueManager : MonoBehaviour
 
 		for(int i = 0; i < listSentences[count].Length; ++i) {
 			if ("\n".Equals(listSentences[count][i]))
-				text.text += System.Environment.NewLine;
-			else text.text += listSentences[count][i];
+				dialogText.text += System.Environment.NewLine;
+			else dialogText.text += listSentences[count][i];
 
 			yield return new WaitForSeconds(0.01f);
 		}
@@ -90,7 +102,7 @@ public class DialogueManager : MonoBehaviour
 		if (talking) {
 			if (Input.GetMouseButtonDown(0)) {
 				count++;
-				text.text = "";
+				dialogText.text = "";
 
 				if (count == listSentences.Count) {
 					StopAllCoroutines();
@@ -104,7 +116,7 @@ public class DialogueManager : MonoBehaviour
 		else if (productionTalking) {
 			if (Input.GetMouseButtonDown(0)) {
 				count++;
-				text.text = "";
+				dialogText.text = "";
 
 				if (count == listSentences.Count) {
 					StopAllCoroutines();

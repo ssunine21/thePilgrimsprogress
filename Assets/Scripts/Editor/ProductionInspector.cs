@@ -19,7 +19,7 @@ public class ProductionInspector : Editor {
 
     private void OnEnable() {
         npcProp = serializedObject.FindProperty("npcList");
-        prop = serializedObject.FindProperty("productionType");
+        prop = serializedObject.FindProperty("productionTypeList");
 
         productionType = new ReorderableList(serializedObject, prop, true, true, true, true);
         npcList = new ReorderableList(serializedObject, npcProp, true, true, true, true);
@@ -44,10 +44,10 @@ public class ProductionInspector : Editor {
             keyWidth = rect.width * 0.4f;
             valueWidth = rect.width * 0.55f;
 
-            productionManager.productionType[index].productionKey =
-            (ProductionKey)EditorGUI.EnumPopup(new Rect(rect.x, rect.y, keyWidth, EditorGUIUtility.singleLineHeight), GUIContent.none, productionManager.productionType[index].productionKey);
+            productionManager.productionTypeList[index].productionKey =
+            (ProductionKey)EditorGUI.EnumPopup(new Rect(rect.x, rect.y, keyWidth, EditorGUIUtility.singleLineHeight), GUIContent.none, productionManager.productionTypeList[index].productionKey);
 
-            switch (productionManager.productionType[index].productionKey) {
+            switch (productionManager.productionTypeList[index].productionKey) {
                 case ProductionKey.gameObject:
                     EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
                         element.FindPropertyRelative("gameObject"), GUIContent.none);
@@ -107,7 +107,7 @@ public class ProductionInspector : Editor {
     private void OnSceneGUI() {
         Tools.current = Tool.None;
         
-        var vertexes = productionManager.productionType;
+        var vertexes = productionManager.productionTypeList;
         //List<Vector3> line = new List<Vector3>;
         foreach(var vertex in vertexes) {
             if (vertex.productionKey.Equals(ProductionKey.position)) {

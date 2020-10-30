@@ -12,6 +12,7 @@ public class QuestManager : MonoBehaviour {
 	private const string no = "no";
 	private const string title = "title";
 	private const string contents = "contents";
+	private const string character = "character";
 	private const string scriptNum = "scriptNum";
 	private const string release = "release";
 
@@ -54,26 +55,28 @@ public class QuestManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="questNum"></param>
 	/// <param name="currProductionObject">It determines the production of the object</param>
-	public void InsertQuest(string questNum, ObjectControl currProductionObject) {
+	public void InsertQuest(string questNum) {
 		for (var i = 0; i < questDatas.Count; ++i) {
 			if (questDatas[i][scriptNum].ToString().Equals(questNum)) {
+				string name = questDatas[i][character].ToString();
+		
 				//To call SendSentences when different the questNum.
 				while (i < questDatas.Count) {
 					if (!questDatas[i][scriptNum].ToString().Equals(questNum) && !questDatas[i][scriptNum].ToString().Equals("")) {
-						SendSentences(currProductionObject);
+						SendSentences(name);
 						return;
 					}
 					sentences.Add((string)questDatas[i]["script"]);
 					++i;
 				}
-				SendSentences(currProductionObject);
+				SendSentences(name);
 				return;
 			}
 		}
 	}
 
-	private void SendSentences(ObjectControl currProductionObject) {
-		dialogueManager.ShowDialogue(sentences, currProductionObject);
+	private void SendSentences(string name) {
+		dialogueManager.ShowDialogue(sentences, name);
 		sentences.Clear();
 	}
 

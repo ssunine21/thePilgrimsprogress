@@ -33,51 +33,37 @@ public enum PROPERTIES {
 }
 
 [RequireComponent(typeof(Collider2D))]
-public class ProductionManager : MonoBehaviour
-{
+public class ProductionManager : MonoBehaviour {
     private const float gizmoDiameter = 0.7f;
 
     [SerializeField]
     public List<GameObject> npcList;
+    public ProductionType[] productionTypeList;
+    public GameObject checkerImg = null;
+
     public string questNumber = "";
 
-    public ProductionType[] productionType;
     public bool isCheck = false;
     public bool isStarting = false;
 
-    public GameObject checkerImg = null;
-    private bool division = false;
+    // private bool division = false;
 
-    private List<ObjectControl> tempObjects = new List<ObjectControl>();
-    
+
 
     private void Start() {
         if (checkerImg != null) {
             checkerImg.SetActive(false);
             isCheck = true;
         }
+
+        setProduction();
     }
 
     private void setProduction() {
-        ObjectControl tempObject = null;
-
-        if (productionType.Length > 0) {
-            foreach (var prodiction in productionType) {
-                if (prodiction.productionKey.Equals(ProductionKey.division)) division = true;
-
+        if (productionTypeList.Length > 0) {
+            foreach (var prodiction in productionTypeList) {
                 if (prodiction.productionKey.Equals(ProductionKey.gameObject)) {
-                    if (!division) {
-                        prodiction.gameObject.GetComponent<ObjectControl>().preObject = tempObject;
-                    }
-
-                    tempObject = prodiction.gameObject.GetComponent<ObjectControl>();
-                    tempObject.productionTypeList = new List<ProductionType>();
-                    tempObject.productionTypeList.Add(prodiction);
-                    tempObjects.Add(tempObject);
-                    division = false;
-
-                } else {
-                    tempObject.productionTypeList.Add(prodiction);
+                    npcList.Add(prodiction.gameObject);
                 }
             }
         }
@@ -108,7 +94,7 @@ public class ProductionManager : MonoBehaviour
     void OnDrawGizmosSelected() {
         Vector2 tempPos = Vector2.zero;
 
-        foreach (var production in productionType) {
+        foreach (var production in productionTypeList) {
             if (production.productionKey.Equals(ProductionKey.gameObject)) {
                 tempPos = new Vector2(production.gameObject.transform.position.x, production.gameObject.transform.position.y);
             } else if (production.productionKey.Equals(ProductionKey.position)) {
@@ -119,13 +105,9 @@ public class ProductionManager : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if(this.isStarting) {
+        if (this.isStarting) {
+            ProductionStart();
 
-            setProduction();
-
-            foreach(var gameObject in tempObjects) {
-                gameObject.ProductionStart();
-            }
             this.isStarting = false;
         }
         //if (isStart) {
@@ -137,11 +119,86 @@ public class ProductionManager : MonoBehaviour
         //}
     }
 
+    public void ProductionStart() {
+        StopAllCoroutines();
+        StartCoroutine("ProductionControl");
+    }
+
     public void startProduction() {
         if (isCheck) {
             if (checkerImg.activeSelf == true) isStarting = true;
         } else {
             isStarting = true;
         }
+    }
+
+
+
+    IEnumerator ProductionControl() {
+        ObjectControl currObject = null;
+        int initMoveSpeed = 0;
+
+        foreach (var production in productionTypeList) {
+            switch (production.productionKey) {
+                case ProductionKey.gameObject:
+                    currObject = production.gameObject.GetComponent<ObjectControl>();
+
+                    if (production.gameObject.GetComponent<FollowCam>() != null)
+                        production.gameObject.GetComponent<FollowCam>().enabled = false;
+                    break;
+
+                case ProductionKey.position:
+                    bool isMove = true;
+
+                    Vector2 tempDir = (production.pos - (Vector2)currObject.tr.position);
+                    currObject.moveDir = tempDir.normalized;
+
+                    while (isMove) {
+                        if (Vector2.Distance(currObject.tr.position, production.pos) <= 0.1f) {
+                            isMove = false;
+                            currObject.moveDir = Vector3.zero;
+                        }
+
+                        yield return null;
+                    }
+                    break;
+
+                case ProductionKey.scriptNum:
+                    try {
+                        QuestManager.init.InsertQuest(production.scriptNum);
+                    } catch (System.NullReferenceException e) {
+                        Debug.LogError(e.Message + "QuestManagert script is null, check Canvas Object");
+                    } catch (KeyNotFoundException e) {
+                        Debug.LogError(e.Message + "해당 퀘스트의 script number 불일치");
+                    }
+                    while (DialogueManager.init.productionTalking) {
+                        yield return null;
+                    }
+                    break;
+
+                case ProductionKey.moveSpeed:
+                    initMoveSpeed = currObject.moveSpeed;
+                    currObject.moveSpeed = production.moveSpeed;
+                    break;
+
+                case ProductionKey.delayTime:
+                    yield return new WaitForSeconds(production.delayTime);
+                    break;
+
+                case ProductionKey.anim:
+                    break;
+
+                case ProductionKey.nextQuest:
+                    QuestManager.init.nextQuest(production.nextQuestNumber);
+                    if (PlayerControl.init != null)
+                        PlayerControl.init.systemControl(false);
+                    break;
+            }
+        }
+
+        if (this.GetComponent<FollowCam>() != null) this.GetComponent<FollowCam>().enabled = true;
+
+        if (initMoveSpeed != 0)
+            currObject.moveSpeed = initMoveSpeed;
     }
 }

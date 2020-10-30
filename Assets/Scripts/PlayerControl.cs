@@ -59,7 +59,7 @@ public class PlayerControl : MonoBehaviour {
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
 
-        objectControl._moveDir = new Vector2(h, v).normalized;
+        objectControl.moveDir = new Vector2(h, v).normalized;
     }
 
     private void GetKeyDown() {
@@ -79,7 +79,7 @@ public class PlayerControl : MonoBehaviour {
     public void systemControl(bool isControl) {
         if (isControl) {
             isSystemControl = true;
-            objectControl._moveDir = Vector2.zero;
+            objectControl.moveDir = Vector2.zero;
         } else {
             isSystemControl = false;
         }

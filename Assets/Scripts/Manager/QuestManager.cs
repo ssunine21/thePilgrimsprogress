@@ -12,7 +12,8 @@ public class QuestManager : MonoBehaviour {
 	private const string no = "no";
 	private const string title = "title";
 	private const string contents = "contents";
-	private const string character = "character";
+	private const string npcNumber = "character";
+	private const string npcName = "name";
 	private const string scriptNum = "scriptNum";
 	private const string release = "release";
 
@@ -32,11 +33,12 @@ public class QuestManager : MonoBehaviour {
 		} else {
 			Destroy(this.gameObject);
 		}
+
+		questDatas = CSVReader.Read(questFileName);
 	}
 	#endregion Singleton
 
 	private void Start() {
-		questDatas = CSVReader.Read(questFileName);
 		dialogueManager = FindObjectOfType<DialogueManager>();
 		objectListWithProductionManager = FindObjectsOfType(typeof(ProductionManager)) as ProductionManager[];
 
@@ -55,24 +57,26 @@ public class QuestManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="questNum"></param>
 	/// <param name="currProductionObject">It determines the production of the object</param>
-	public void InsertQuest(string questNum) {
+	public string InsertQuest(string questNum) {
 		for (var i = 0; i < questDatas.Count; ++i) {
 			if (questDatas[i][scriptNum].ToString().Equals(questNum)) {
-				string name = questDatas[i][character].ToString();
+				string npcName = questDatas[i][QuestManager.npcName].ToString();
+				string npcNumber = questDatas[i][QuestManager.npcNumber].ToString();
 		
 				//To call SendSentences when different the questNum.
 				while (i < questDatas.Count) {
 					if (!questDatas[i][scriptNum].ToString().Equals(questNum) && !questDatas[i][scriptNum].ToString().Equals("")) {
-						SendSentences(name);
-						return;
+						SendSentences(npcName);
+						return npcNumber;
 					}
 					sentences.Add((string)questDatas[i]["script"]);
 					++i;
 				}
-				SendSentences(name);
-				return;
+				SendSentences(npcName);
+				return npcNumber;
 			}
 		}
+		return "";
 	}
 
 	private void SendSentences(string name) {
@@ -115,4 +119,18 @@ public class QuestManager : MonoBehaviour {
 		}
     }
 
+	public void releaseQuestObject(string questNumber) {
+		nextQuest(questNumber);
+	}
+
+	public List<string> getQuestNumbers() {
+		List<string> questNumbers = new List<string>();
+
+		for(int i = 0; i < questDatas.Count; ++i) {
+			if (!questDatas[i][no].ToString().Equals(""))
+				questNumbers.Add(questDatas[i][no].ToString());
+		}
+
+		return questNumbers;
+	}
 }

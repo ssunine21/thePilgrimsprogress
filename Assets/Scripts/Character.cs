@@ -43,7 +43,7 @@ public class Character : MonoBehaviour {
             animator.SetFloat(walkAnimId, value: Mathf.Abs(xAxis) + Mathf.Abs(yAxis));
     }
 
-    protected void playTalkAnimation() {
+    public void playTalkAnimation() {
         if (animator)
             animator.SetTrigger(talkAnimId);
     }

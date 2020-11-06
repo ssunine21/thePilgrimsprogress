@@ -132,8 +132,6 @@ public class ProductionManager : MonoBehaviour {
         }
     }
 
-
-
     IEnumerator ProductionControl() {
         ObjectControl currObject = null;
         int initMoveSpeed = 0;
@@ -158,14 +156,17 @@ public class ProductionManager : MonoBehaviour {
                             isMove = false;
                             currObject.moveDir = Vector3.zero;
                         }
-
                         yield return null;
                     }
                     break;
 
                 case ProductionKey.scriptNum:
                     try {
-                        QuestManager.init.InsertQuest(production.scriptNum);
+                        GameObject npcObject = searchNpc(QuestManager.init.InsertQuest(production.scriptNum));
+
+                        if (npcObject)
+                            npcObject.GetComponent<ObjectControl>().playTalkAnimation();
+
                     } catch (System.NullReferenceException e) {
                         Debug.LogError(e.Message + "QuestManagert script is null, check Canvas Object");
                     } catch (KeyNotFoundException e) {
@@ -192,13 +193,21 @@ public class ProductionManager : MonoBehaviour {
                     QuestManager.init.nextQuest(production.nextQuestNumber);
                     if (PlayerControl.init != null)
                         PlayerControl.init.systemControl(false);
+                    if (production.gameObject.GetComponent<FollowCam>() != null)
+                        production.gameObject.GetComponent<FollowCam>().enabled = true;
                     break;
             }
         }
-
-        if (this.GetComponent<FollowCam>() != null) this.GetComponent<FollowCam>().enabled = true;
-
         if (initMoveSpeed != 0)
             currObject.moveSpeed = initMoveSpeed;
+    }
+
+    private GameObject searchNpc(string name) {
+        foreach(var npc in npcList) {
+            if (npc.name.Equals(name))
+                return npc;
+        }
+
+        return null;
     }
 }

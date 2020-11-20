@@ -24,6 +24,7 @@ public class DropDown : MonoBehaviour
 
     public void setQuest() {
         int index = dropdown.value;
+        QuestManager.init.allActiveQuest();
         QuestManager.init.releaseQuestObject(buildingNames[index]);
     }
 }

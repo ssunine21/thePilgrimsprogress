@@ -58,6 +58,11 @@ public class ProductionInspector : Editor {
                         element.FindPropertyRelative("pos"), GUIContent.none);
                     break;
 
+                case ProductionKey.zoom:
+                    EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
+                        element.FindPropertyRelative("zoom"), GUIContent.none);
+                    break;
+
                 case ProductionKey.scriptNum:
                     EditorGUI.PropertyField(new Rect(x + keyWidth, y, valueWidth, EditorGUIUtility.singleLineHeight),
                         element.FindPropertyRelative("scriptNum"), GUIContent.none);
@@ -105,8 +110,7 @@ public class ProductionInspector : Editor {
     }
 
     private void OnSceneGUI() {
-        Tools.current = Tool.None;
-        
+      
         var vertexes = productionManager.productionTypeList;
         //List<Vector3> line = new List<Vector3>;
         foreach(var vertex in vertexes) {

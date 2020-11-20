@@ -7,6 +7,7 @@ using UnityEditor;
 public enum ProductionKey {
     gameObject,
     position,
+    zoom,
     moveSpeed,
     delayTime,
     anim,
@@ -20,6 +21,7 @@ public class ProductionType {
     public ProductionKey productionKey;
     public GameObject gameObject;
     public Vector2 pos;
+    public float zoom;
     public string scriptNum;
     public int moveSpeed;
     public float delayTime;
@@ -86,7 +88,7 @@ public class ProductionManager : MonoBehaviour {
         }
     }
 
-    private void OnDrawGizmos() {
+    void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position, gizmoDiameter);
     }
@@ -110,13 +112,6 @@ public class ProductionManager : MonoBehaviour {
 
             this.isStarting = false;
         }
-        //if (isStart) {
-        //    if (objects[0].productionValue.Length < i) return;
-
-        //    if (Vector3.Distance(objects[0].gameObject.transform.position, objects[0].productionValue[i + 1].pos) >= 0.01f)
-        //        objects[0].gameObject.transform.localPosition = Vector3.MoveTowards(objects[0].gameObject.transform.position, objects[0].productionValue[i + 1].pos, 8 * Time.deltaTime);
-        //    else ++i;
-        //}
     }
 
     public void ProductionStart() {
@@ -146,18 +141,41 @@ public class ProductionManager : MonoBehaviour {
                     break;
 
                 case ProductionKey.position:
-                    bool isMove = true;
+                    Vector3 pos = production.pos;
+                    pos.z = currObject.tr.position.z;
 
-                    Vector2 tempDir = (production.pos - (Vector2)currObject.tr.position);
-                    currObject.moveDir = tempDir.normalized;
+                    while (true) {
+                        currObject.tr.position = Vector3.Lerp(currObject.tr.position, pos, Time.deltaTime);
 
-                    while (isMove) {
-                        if (Vector2.Distance(currObject.tr.position, production.pos) <= 0.1f) {
-                            isMove = false;
-                            currObject.moveDir = Vector3.zero;
+                        if (Vector2.SqrMagnitude(currObject.tr.position - pos) <= .5f) {
+                            break;
                         }
                         yield return null;
                     }
+                    break;
+
+                case ProductionKey.zoom:
+                    float zoomSpeed = 0.05f;
+                    production.zoom += Definition.CAMERA_SIZE;
+
+                    if (Camera.main.orthographicSize > production.zoom) {
+                        while (true) {
+                            Camera.main.orthographicSize -= zoomSpeed;
+
+                            if (Camera.main.orthographicSize < production.zoom) break;
+
+                            yield return null;
+                        }
+                    } else if (Camera.main.orthographicSize < production.zoom) {
+                        while (true) {
+                            Camera.main.orthographicSize += zoomSpeed;
+
+                            if (Camera.main.orthographicSize > production.zoom) break;
+
+                            yield return null;
+                        }
+                    }
+
                     break;
 
                 case ProductionKey.scriptNum:
@@ -193,8 +211,8 @@ public class ProductionManager : MonoBehaviour {
                     QuestManager.init.nextQuest(production.nextQuestNumber);
                     if (PlayerControl.init != null)
                         PlayerControl.init.systemControl(false);
-                    if (production.gameObject.GetComponent<FollowCam>() != null)
-                        production.gameObject.GetComponent<FollowCam>().enabled = true;
+                    if (!Camera.main.GetComponent<FollowCam>().enabled)
+                        Camera.main.GetComponent<FollowCam>().enabled = true;
                     break;
             }
         }

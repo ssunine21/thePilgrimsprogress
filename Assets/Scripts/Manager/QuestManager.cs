@@ -133,4 +133,10 @@ public class QuestManager : MonoBehaviour {
 
 		return questNumbers;
 	}
+
+	public void allActiveQuest() {
+		foreach (ProductionManager production in objectListWithProductionManager) {
+			production.gameObject.SetActive(true);
+		}
+	}
 }
